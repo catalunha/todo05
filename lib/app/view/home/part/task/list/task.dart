@@ -32,7 +32,7 @@ class Task extends StatelessWidget {
             },
           ),
           onTap: () {
-            _homeController.editTask(taskModel.uuid!);
+            _homeController.editTask(taskModel.uuid);
           },
           title: Text(
             taskModel.description,

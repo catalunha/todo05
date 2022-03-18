@@ -4,18 +4,18 @@ import 'package:hive/hive.dart';
 
 import 'package:todo05/app/model/models/task/task_model.dart';
 import 'package:todo05/app/model/repositories/task/task_repository.dart';
-import 'package:todo05/app/viewmodel/user/user_additional_info/user_additional_info_controller.dart';
+import 'package:todo05/app/viewmodel/user/user_additional_info/usermodel_service.dart';
 
 class TaskRepositoryImp implements TaskRepository {
-  UserController _userController;
+  UserModelService _userModelService;
   TaskRepositoryImp({
-    required UserController userController,
-  }) : _userController = userController;
+    required UserModelService userModelService,
+  }) : _userModelService = userModelService;
 
   // static const boxName = "task";
   String boxName() {
-    print('boxName: ${_userController.userModel!.uuid}');
-    return _userController.userModel!.uuid;
+    print('boxName: ${_userModelService.userModel2!.uuid}');
+    return _userModelService.userModel2!.uuid;
   }
 
   @override

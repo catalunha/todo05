@@ -4,6 +4,7 @@ import 'package:todo05/app/model/repositories/user/user_repository_impl.dart';
 import 'package:todo05/app/viewmodel/services/user/user_service.dart';
 import 'package:todo05/app/viewmodel/services/user/user_service_impl.dart';
 import 'package:todo05/app/viewmodel/user/user_additional_info/user_additional_info_controller.dart';
+import 'package:todo05/app/viewmodel/user/user_additional_info/usermodel_service.dart';
 
 class UserBinding implements Bindings {
   @override
@@ -17,6 +18,9 @@ class UserBinding implements Bindings {
       UserServiceImpl(
         userRepository: Get.find(),
       ),
+    );
+    Get.put<UserModelService>(
+      UserModelService(),
     );
     Get.lazyPut(
       () => UserController(

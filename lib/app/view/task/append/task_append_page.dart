@@ -22,8 +22,8 @@ class _TaskAppendPageState extends State<TaskAppendPage> {
   @override
   void initState() {
     super.initState();
-    // _descriptionTec.text =
-    //     widget._taskCreateController.taskModel?.description ?? "";
+    _descriptionTec.text =
+        widget._taskCreateController.taskModel?.description ?? "";
   }
 
   @override

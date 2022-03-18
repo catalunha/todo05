@@ -5,6 +5,7 @@ import 'package:todo05/app/model/repositories/user/user_repository_exception.dar
 import 'package:todo05/app/routes.dart';
 import 'package:todo05/app/viewmodel/auth/auth_controller.dart';
 import 'package:todo05/app/viewmodel/services/user/user_service.dart';
+import 'package:todo05/app/viewmodel/user/user_additional_info/usermodel_service.dart';
 import 'package:todo05/app/viewmodel/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/viewmodel/utils/mixins/message_mixin.dart';
 
@@ -95,6 +96,8 @@ class UserController extends GetxController with LoaderMixin, MessageMixin {
       print('indo para userAnalyzingInfo');
       Get.offAllNamed(Routes.userAnalyzingInfo);
     } else {
+      var controller = Get.find<UserModelService>();
+      controller.userModel2 = _userModel.value;
       print('indo para home');
       Get.offAllNamed(Routes.home);
     }

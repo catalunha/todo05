@@ -10,7 +10,7 @@ class HomeBinding implements Bindings {
   @override
   void dependencies() {
     Get.put<TaskRepository>(
-      TaskRepositoryImp(userController: Get.find()),
+      TaskRepositoryImp(userModelService: Get.find()),
     );
     Get.put<TaskService>(
       TaskServiceImp(taskRepository: Get.find()),

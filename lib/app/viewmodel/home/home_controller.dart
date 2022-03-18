@@ -115,8 +115,8 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   void editTask(String id) {
-    var _teamModel = allTasks.firstWhere((element) => element.uuid == id);
+    var _taskModel = allTasks.firstWhere((element) => element.uuid == id);
 
-    Get.toNamed(Routes.taskAppend, arguments: _teamModel);
+    Get.toNamed(Routes.taskAppend, arguments: _taskModel);
   }
 }
