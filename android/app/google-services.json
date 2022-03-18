@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "378696139543",
+    "project_id": "todo-p05",
+    "storage_bucket": "todo-p05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378696139543:android:b91e07522d3947ffbd2d52",
+        "android_client_info": {
+          "package_name": "education.brintec.todo05"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378696139543-5ev20jm2272od34fqiu7nrd0mrqda74q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "education.brintec.todo05",
+            "certificate_hash": "031b8255ea1c3259de40935fceda93c500792d28"
+          }
+        },
+        {
+          "client_id": "378696139543-bedc7k94r6p0dhbq8iprtejbcdlhetnb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9hLz12nTjAD3NcOUn_KuBvLuUr50Ud5c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378696139543-bedc7k94r6p0dhbq8iprtejbcdlhetnb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
