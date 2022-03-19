@@ -6,7 +6,7 @@ import 'package:todo05/app/viewmodel/services/user/user_service_impl.dart';
 import 'package:todo05/app/viewmodel/user/user_additional_info/user_additional_info_controller.dart';
 import 'package:todo05/app/viewmodel/user/user_additional_info/usermodel_service.dart';
 
-class UserBinding implements Bindings {
+class UserAdditionalInfoBinding implements Bindings {
   @override
   void dependencies() async {
     Get.put<UserRepository>(
@@ -23,7 +23,7 @@ class UserBinding implements Bindings {
       UserModelService(),
     );
     Get.lazyPut(
-      () => UserController(
+      () => UserAdditionalInfoController(
         authController: Get.find(),
         userService: Get.find(),
       ),

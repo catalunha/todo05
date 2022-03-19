@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:todo05/app/viewmodel/user/user_additional_info/user_additional_info_controller.dart';
 
 class UserAdditionalInfoPage extends StatefulWidget {
-  final UserController _userController = Get.find();
+  final UserAdditionalInfoController _userController = Get.find();
   UserAdditionalInfoPage({Key? key}) : super(key: key);
 
   @override

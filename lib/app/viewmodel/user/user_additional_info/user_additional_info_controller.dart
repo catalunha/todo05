@@ -9,10 +9,11 @@ import 'package:todo05/app/viewmodel/user/user_additional_info/usermodel_service
 import 'package:todo05/app/viewmodel/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/viewmodel/utils/mixins/message_mixin.dart';
 
-class UserController extends GetxController with LoaderMixin, MessageMixin {
+class UserAdditionalInfoController extends GetxController
+    with LoaderMixin, MessageMixin {
   final AuthController _authController;
   final UserService _userService;
-  UserController({
+  UserAdditionalInfoController({
     required AuthController authController,
     required UserService userService,
   })  : _authController = authController,

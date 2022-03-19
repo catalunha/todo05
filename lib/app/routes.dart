@@ -46,7 +46,7 @@ class Routes {
     ),
     GetPage(
       name: Routes.userAdditionalInfo,
-      binding: UserBinding(),
+      binding: UserAdditionalInfoBinding(),
       page: () => UserAdditionalInfoPage(),
     ),
     GetPage(
