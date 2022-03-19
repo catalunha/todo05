@@ -1,5 +1,5 @@
 # todo05
-
+Esta e a estrutura em MVVM
 # Estrutura
 Leituras:
 * https://medium.com/@mashoodsidd97/understanding-of-clean-architecture-in-your-flutter-apps-with-tdd-test-driven-development-e674429fa0d
