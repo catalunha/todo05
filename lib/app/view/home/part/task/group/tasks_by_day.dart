@@ -20,18 +20,18 @@ class TasksByDay extends StatelessWidget {
       },
       borderRadius: BorderRadius.circular(30),
       child: Obx(() => Container(
-            margin: EdgeInsets.only(right: 10),
-            padding: EdgeInsets.all(20),
+            // margin: EdgeInsets.only(right: 10),
+            padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               color: _homeController.groupDate.value ==
                       dateFormat.format(tasksDayModel.dateTime)
-                  ? Colors.green.shade500
-                  : Colors.green.shade800,
+                  ? Colors.blue.shade200
+                  : null,
               border: Border.all(
                 width: 1,
                 color: Colors.grey.withOpacity(0.8),
               ),
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(10),
             ),
             child: Column(children: [
               Text(dateFormat.format(tasksDayModel.dateTime)),

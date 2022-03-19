@@ -15,6 +15,11 @@ class HomeBinding implements Bindings {
       TaskServiceImp(taskRepository: Get.find(), userModelService: Get.find()),
     );
 
-    Get.lazyPut<HomeController>(() => HomeController(taskService: Get.find()));
+    Get.lazyPut<HomeController>(
+      () => HomeController(
+        taskService: Get.find(),
+        userModelService: Get.find(),
+      ),
+    );
   }
 }

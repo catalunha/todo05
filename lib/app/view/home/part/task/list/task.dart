@@ -24,7 +24,7 @@ class Task extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 5),
       child: IntrinsicHeight(
         child: ListTile(
-          contentPadding: EdgeInsets.all(8),
+          // contentPadding: EdgeInsets.all(8),
           leading: Checkbox(
             value: taskModel.itsDone,
             onChanged: (value) {

@@ -1,6 +1,10 @@
 # todo05
 
 # Estrutura
+Leituras:
+* https://medium.com/@mashoodsidd97/understanding-of-clean-architecture-in-your-flutter-apps-with-tdd-test-driven-development-e674429fa0d
+* https://medium.com/@mashoodsidd97/clean-architecture-tdd-with-flutter-part-2-968c7fc52c5b
+* 
 
 Se o objetivo de uma abstração/interface é guiar as implementações ?
 Esta abordagem a seguir esta correta ?

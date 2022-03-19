@@ -8,7 +8,7 @@ import 'package:todo05/app/viewmodel/user/user_additional_info/user_additional_i
 
 class HomePage extends StatefulWidget {
   final HomeController _homeController = Get.find();
-  UserController _userController = Get.find();
+  // UserController _userController = Get.find();
   HomePage({Key? key}) : super(key: key);
 
   @override
@@ -30,8 +30,8 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          // 'Olá, ${widget._userController.userModel?.displayName ?? "Sem nome"}',
-          'Olá, ${widget._userController.userModel?.uuid ?? "Sem nome"}',
+          'Olá, ${widget._homeController.userModel.displayName ?? "Sem nome"}',
+          // 'Olá, ${widget._homeController.userModel.uuid}',
 
           style: TextStyle(color: Colors.black),
         ),

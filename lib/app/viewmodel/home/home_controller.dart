@@ -2,17 +2,25 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:todo05/app/model/models/task/task_day_model.dart';
 import 'package:todo05/app/model/models/task/task_model.dart';
+import 'package:todo05/app/model/models/user/user_model.dart';
 import 'package:todo05/app/model/repositories/task/task_repository_exception.dart';
 import 'package:todo05/app/routes.dart';
 import 'package:todo05/app/viewmodel/services/task/task_service.dart';
 import 'package:todo05/app/viewmodel/services/task/task_service_exception.dart';
+import 'package:todo05/app/viewmodel/user/user_additional_info/usermodel_service.dart';
 import 'package:todo05/app/viewmodel/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/viewmodel/utils/mixins/message_mixin.dart';
 
 class HomeController extends GetxController with LoaderMixin, MessageMixin {
   final TaskService _taskService;
-  HomeController({required TaskService taskService})
-      : _taskService = taskService;
+  final UserModelService _userModelService;
+  HomeController({
+    required TaskService taskService,
+    required UserModelService userModelService,
+  })  : _taskService = taskService,
+        _userModelService = userModelService;
+
+  UserModel get userModel => _userModelService.userModel;
 
   final _loading = false.obs;
   final _message = Rxn<MessageModel>();

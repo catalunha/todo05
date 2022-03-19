@@ -16,20 +16,20 @@ class TaskServiceImp implements TaskService {
 
   @override
   Future<void> create(TaskModel taskModel) {
-    TaskRepositoryImp.boxName = _userModelService.userModel2!.uuid;
+    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
     return _taskRepository.create(taskModel);
   }
 
   @override
   Future<List<TaskModel>> readAll() {
-    TaskRepositoryImp.boxName = _userModelService.userModel2!.uuid;
+    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
 
     return _taskRepository.readAll();
   }
 
   @override
   Future<TaskModel?> readByUuid(String uuid) {
-    TaskRepositoryImp.boxName = _userModelService.userModel2!.uuid;
+    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
 
     return _taskRepository.readByUuid(uuid);
   }
@@ -37,28 +37,28 @@ class TaskServiceImp implements TaskService {
   @override
   Future<List<TaskModel>> readByPeriod(
       {required DateTime start, DateTime? end}) {
-    TaskRepositoryImp.boxName = _userModelService.userModel2!.uuid;
+    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
 
     return _taskRepository.readByPeriod(start: start, end: end);
   }
 
   @override
   Future<void> update(TaskModel taskModel) {
-    TaskRepositoryImp.boxName = _userModelService.userModel2!.uuid;
+    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
 
     return _taskRepository.update(taskModel);
   }
 
   @override
   Future<void> deleteAll() {
-    TaskRepositoryImp.boxName = _userModelService.userModel2!.uuid;
+    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
 
     return _taskRepository.deleteAll();
   }
 
   @override
   Future<void> deleteByUuid(String uuid) {
-    TaskRepositoryImp.boxName = _userModelService.userModel2!.uuid;
+    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
 
     return _taskRepository.deleteByUuid(uuid);
   }

@@ -23,8 +23,9 @@ class UserController extends GetxController with LoaderMixin, MessageMixin {
 
   User? get userAuth => _authController.user;
 
-  Rxn<UserModel> _userModel = Rxn<UserModel>();
-  UserModel? get userModel => _userModel.value;
+  UserModel? _userModel;
+  // Rxn<UserModel> _userModel = Rxn<UserModel>();
+  // UserModel? get userModel => _userModel.value;
 
   var getAdditionalInformation = true.obs;
 
@@ -42,7 +43,7 @@ class UserController extends GetxController with LoaderMixin, MessageMixin {
       print('UserController');
       print('userUid: ${userAuth!.uid}');
       var userTemp = await _userService.getByUidAuth(userAuth!.uid);
-      _userModel(userTemp);
+      // _userModel(userTemp);
       if (userTemp == null) {
         // if (_userModel.value == null) {
         if (getAdditionalInformation.isTrue) {
@@ -50,10 +51,11 @@ class UserController extends GetxController with LoaderMixin, MessageMixin {
           getAdditionalInformation(true);
         } else {
           print('Usuario não cadastrado. Não tem informações complementares.');
-          var userTemp = await userCreate();
+          await userCreate();
           goToHomeOrAnalisyng();
         }
       } else {
+        _userModel = UserModel.fromMap(userTemp.toMap());
         print('Usuario cadastrado.');
         goToHomeOrAnalisyng();
       }
@@ -92,12 +94,12 @@ class UserController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   void goToHomeOrAnalisyng() {
-    if (_userModel.value!.inAnalysis) {
+    if (_userModel!.inAnalysis) {
       print('indo para userAnalyzingInfo');
       Get.offAllNamed(Routes.userAnalyzingInfo);
     } else {
       var controller = Get.find<UserModelService>();
-      controller.userModel2 = _userModel.value;
+      controller.userModel = UserModel.fromMap(_userModel!.toMap());
       print('indo para home');
       Get.offAllNamed(Routes.home);
     }
@@ -123,8 +125,10 @@ class UserController extends GetxController with LoaderMixin, MessageMixin {
 
     try {
       var userTemp = await _userService.create(data);
-      _userModel(userTemp);
-      return _userModel.value!;
+      _userModel = UserModel.fromMap(userTemp.toMap());
+      // _userModel(userTemp);
+      // return _userModel.value!;
+      return userTemp;
     } catch (e) {
       _message.value = MessageModel(
         title: 'Erro',
