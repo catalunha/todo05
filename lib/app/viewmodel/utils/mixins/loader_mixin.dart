@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 //
 mixin LoaderMixin on GetxController {
   void loaderListener(RxBool loading) {
-    ever<bool>(loading, (_) async {
-      if (loading.isTrue) {
+    ever<bool>(loading, (value) async {
+      if (value) {
         await Get.dialog(
           const Center(
             child: CircularProgressIndicator(),

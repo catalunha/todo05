@@ -21,7 +21,6 @@ class AuthController extends GetxController {
     _userFirebaseAuth.bindStream(_firebaseAuth.authStateChanges());
     _userFirebaseAuth.bindStream(_firebaseAuth.userChanges());
     ever<User?>(_userFirebaseAuth, (user) async {
-      // await Get.delete<UserController>();
       if (user != null) {
         print('userAdditionalInfo');
         Get.offAllNamed(Routes.userAdditionalInfo);

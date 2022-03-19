@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:todo05/app/model/hive/hive_connection_factory.dart';
 import 'package:todo05/app/model/repositories/task/task_repository.dart';
 import 'package:todo05/app/model/repositories/task/task_repository_impl.dart';
 import 'package:todo05/app/viewmodel/home/home_controller.dart';
