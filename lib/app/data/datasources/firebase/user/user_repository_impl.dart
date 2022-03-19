@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:todo05/app/model/models/user/user_model.dart';
-import 'package:todo05/app/model/repositories/user/user_repository.dart';
-import 'package:todo05/app/model/repositories/user/user_repository_exception.dart';
+import 'package:todo05/app/data/datasources/firebase/user/user_repository_exception.dart';
+import 'package:todo05/app/data/repositories/user_repository.dart';
+import 'package:todo05/app/domain/models/user/user_model.dart';
 
 class UserRepositoryImpl implements UserRepository {
   final FirebaseFirestore _firebaseFirestore;

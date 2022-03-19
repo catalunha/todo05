@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo05/app/controller/home/home_controller.dart';
+import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
 import 'package:todo05/app/presentation/pages/home/part/task/list/task.dart';
 
 class TaskList extends StatelessWidget {

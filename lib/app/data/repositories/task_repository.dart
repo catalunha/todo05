@@ -1,4 +1,4 @@
-import 'package:todo05/app/model/models/task/task_model.dart';
+import 'package:todo05/app/domain/models/task/task_model.dart';
 
 abstract class TaskRepository {
   Future<void> create(TaskModel taskModel);

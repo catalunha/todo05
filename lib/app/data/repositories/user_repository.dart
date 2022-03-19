@@ -1,4 +1,4 @@
-import 'package:todo05/app/model/models/user/user_model.dart';
+import 'package:todo05/app/domain/models/user/user_model.dart';
 
 abstract class UserRepository {
   Future<UserModel> create(Map<String, dynamic> data);

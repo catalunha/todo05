@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:todo05/app/model/repositories/auth/auth_repository.dart';
-import 'package:todo05/app/model/repositories/auth/auth_repository_impl.dart';
-import 'package:todo05/app/viewmodel/auth/auth_controller.dart';
-import 'package:todo05/app/viewmodel/services/auth/auth_service.dart';
-import 'package:todo05/app/viewmodel/services/auth/auth_service_impl.dart';
+import 'package:todo05/app/data/datasources/firebase/auth/auth_repository_impl.dart';
+import 'package:todo05/app/data/repositories/auth_repository.dart';
+import 'package:todo05/app/domain/usecases/auth/auth_service.dart';
+import 'package:todo05/app/domain/usecases/auth/auth_service_impl.dart';
+import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
 
 class AuthBinding implements Bindings {
   @override

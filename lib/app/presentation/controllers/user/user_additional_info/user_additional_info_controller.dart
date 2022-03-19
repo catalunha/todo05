@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:todo05/app/model/models/user/user_model.dart';
-import 'package:todo05/app/model/repositories/user/user_repository_exception.dart';
+import 'package:todo05/app/data/datasources/firebase/user/user_repository_exception.dart';
+import 'package:todo05/app/domain/models/user/user_model.dart';
+import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
+import 'package:todo05/app/presentation/controllers/user/user_additional_info/usermodel_service.dart';
+import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
+import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
 import 'package:todo05/app/routes.dart';
-import 'package:todo05/app/viewmodel/auth/auth_controller.dart';
-import 'package:todo05/app/viewmodel/services/user/user_service.dart';
-import 'package:todo05/app/viewmodel/user/user_additional_info/usermodel_service.dart';
-import 'package:todo05/app/viewmodel/utils/mixins/loader_mixin.dart';
-import 'package:todo05/app/viewmodel/utils/mixins/message_mixin.dart';
 
 class UserAdditionalInfoController extends GetxController
     with LoaderMixin, MessageMixin {

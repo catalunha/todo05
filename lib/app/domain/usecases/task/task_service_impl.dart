@@ -1,8 +1,8 @@
-import 'package:todo05/app/model/models/task/task_model.dart';
-import 'package:todo05/app/model/repositories/task/task_repository.dart';
-import 'package:todo05/app/model/repositories/task/task_repository_impl.dart';
-import 'package:todo05/app/viewmodel/services/task/task_service.dart';
-import 'package:todo05/app/viewmodel/user/user_additional_info/usermodel_service.dart';
+import 'package:todo05/app/data/datasources/hive/task/task_repository_impl.dart';
+import 'package:todo05/app/data/repositories/task_repository.dart';
+import 'package:todo05/app/domain/models/task/task_model.dart';
+import 'package:todo05/app/domain/usecases/task/task_service.dart';
+import 'package:todo05/app/presentation/controllers/user/user_additional_info/usermodel_service.dart';
 
 class TaskServiceImp implements TaskService {
   TaskRepository _taskRepository;

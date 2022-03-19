@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:todo05/app/model/repositories/auth/auth_repository.dart';
-import 'package:todo05/app/model/repositories/auth/auth_repository_exception.dart';
+import 'package:todo05/app/data/datasources/firebase/auth/auth_repository_exception.dart';
+import 'package:todo05/app/data/repositories/auth_repository.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   FirebaseAuth _firebaseAuth;

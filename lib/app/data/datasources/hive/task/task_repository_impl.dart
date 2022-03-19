@@ -1,9 +1,8 @@
 import 'dart:convert';
 
 import 'package:hive/hive.dart';
-
-import 'package:todo05/app/model/models/task/task_model.dart';
-import 'package:todo05/app/model/repositories/task/task_repository.dart';
+import 'package:todo05/app/data/repositories/task_repository.dart';
+import 'package:todo05/app/domain/models/task/task_model.dart';
 
 class TaskRepositoryImp implements TaskRepository {
   TaskRepositoryImp();

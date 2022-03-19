@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:todo05/app/model/models/user/user_model.dart';
+import 'package:todo05/app/domain/models/user/user_model.dart';
 
 class UserModelService extends GetxService {
   Rxn<UserModel> _userModel = Rxn<UserModel>();

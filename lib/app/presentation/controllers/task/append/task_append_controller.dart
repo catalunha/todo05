@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:todo05/app/model/models/task/task_model.dart';
-import 'package:todo05/app/model/repositories/task/task_repository_exception.dart';
-import 'package:todo05/app/viewmodel/home/home_controller.dart';
-import 'package:todo05/app/viewmodel/services/task/task_service.dart';
-import 'package:todo05/app/viewmodel/utils/mixins/loader_mixin.dart';
-import 'package:todo05/app/viewmodel/utils/mixins/message_mixin.dart';
+import 'package:todo05/app/data/datasources/hive/task/task_repository_exception.dart';
+import 'package:todo05/app/domain/models/task/task_model.dart';
+import 'package:todo05/app/domain/usecases/task/task_service.dart';
+import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
+import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
+import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
 import 'package:uuid/uuid.dart';
 
 class TaskAppendController extends GetxController

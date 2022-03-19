@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo05/app/controller/auth/login/login_controller.dart';
+import 'package:todo05/app/presentation/controllers/auth/login/login_controller.dart';
 import 'package:todo05/app/presentation/pages/utils/part/app_text_form_field.dart';
 import 'package:todo05/app/presentation/pages/utils/part/logo.dart';
 import 'package:todo05/app/routes.dart';

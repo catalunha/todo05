@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:todo05/app/model/models/task/task_day_model.dart';
-import 'package:todo05/app/viewmodel/home/home_controller.dart';
+import 'package:todo05/app/domain/models/task/task_day_model.dart';
+import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
 
 class TasksByDay extends StatelessWidget {
   final HomeController _homeController = Get.find();

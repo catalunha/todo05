@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:todo05/app/viewmodel/auth/method/email_password/email_password_controller.dart';
+import 'package:todo05/app/presentation/controllers/auth/method/email_password/email_password_controller.dart';
 
 class AuthEmailPasswordBinding implements Bindings {
   @override
