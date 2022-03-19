@@ -1,18 +1,18 @@
 import 'package:get/get.dart';
-import 'package:todo05/app/view/auth/login/login_page.dart';
-import 'package:todo05/app/view/auth/method/email_password/email_password_page.dart';
-import 'package:todo05/app/view/home/home_page.dart';
-import 'package:todo05/app/view/splash/splash_page.dart';
-import 'package:todo05/app/view/task/append/task_append_page.dart';
-import 'package:todo05/app/view/user/user_additional_info/user_additional_info_page.dart';
-import 'package:todo05/app/view/user/user_analyzing_info/user_analyzing_info_page.dart';
-import 'package:todo05/app/viewmodel/auth/auth_binding.dart';
-import 'package:todo05/app/viewmodel/auth/login/login_binding.dart';
-import 'package:todo05/app/viewmodel/auth/method/email_password/email_password_binding.dart';
-import 'package:todo05/app/viewmodel/error_page/erro_page.dart';
-import 'package:todo05/app/viewmodel/home/home_binding.dart';
-import 'package:todo05/app/viewmodel/task/append/task_append_binding.dart';
-import 'package:todo05/app/viewmodel/user/user_additional_info/user_additional_info_binding.dart';
+import 'package:todo05/app/presentation/controllers/auth/auth_binding.dart';
+import 'package:todo05/app/presentation/controllers/auth/login/login_binding.dart';
+import 'package:todo05/app/presentation/controllers/auth/method/email_password/email_password_binding.dart';
+import 'package:todo05/app/presentation/controllers/home/home_binding.dart';
+import 'package:todo05/app/presentation/controllers/task/append/task_append_binding.dart';
+import 'package:todo05/app/presentation/controllers/user/user_additional_info/user_additional_info_binding.dart';
+import 'package:todo05/app/presentation/pages/auth/login/login_page.dart';
+import 'package:todo05/app/presentation/pages/auth/method/email_password/email_password_page.dart';
+import 'package:todo05/app/presentation/pages/error/erro_page.dart';
+import 'package:todo05/app/presentation/pages/home/home_page.dart';
+import 'package:todo05/app/presentation/pages/splash/splash_page.dart';
+import 'package:todo05/app/presentation/pages/task/append/task_append_page.dart';
+import 'package:todo05/app/presentation/pages/user/user_additional_info/user_additional_info_page.dart';
+import 'package:todo05/app/presentation/pages/user/user_analyzing_info/user_analyzing_info_page.dart';
 
 class Routes {
   static const errorPage = '/erro';
