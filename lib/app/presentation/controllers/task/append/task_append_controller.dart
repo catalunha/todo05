@@ -78,4 +78,15 @@ class TaskAppendController extends GetxController
       _loading(false);
     }
   }
+
+  Future<void> deleteByUuid(String uuid) async {
+    await _taskService.deleteByUuid(uuid);
+    final HomeController _homeController = Get.find();
+
+    DateTime date =
+        DateTime(selectedDate!.year, selectedDate!.month, selectedDate!.day);
+    await _homeController.loadTasks(date);
+    await _homeController.tasksByDay();
+    Get.back();
+  }
 }

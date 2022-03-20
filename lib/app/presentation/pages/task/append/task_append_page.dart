@@ -73,6 +73,22 @@ class _TaskAppendPageState extends State<TaskAppendPage> {
               ),
               SizedBox(height: 20),
               CalendarButton(),
+              Visibility(
+                visible: widget._taskCreateController.taskModel != null,
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: ElevatedButton.icon(
+                    icon: const Icon(
+                      Icons.delete_forever,
+                    ),
+                    onPressed: () {
+                      widget._taskCreateController.deleteByUuid(
+                          widget._taskCreateController.taskModel!.uuid);
+                    },
+                    label: const Text('Apagar esta task'),
+                  ),
+                ),
+              )
             ],
           ),
         ),
