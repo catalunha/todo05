@@ -7,18 +7,18 @@ import 'package:todo05/app/domain/models/task/task_model.dart';
 class TaskRepositoryImp implements TaskRepository {
   TaskRepositoryImp();
 
-  static var boxName = "task";
+  String _userUuid = 'task';
 
   @override
   Future<void> create(TaskModel taskModel) async {
-    var box = await Hive.openBox(boxName);
+    var box = await Hive.openBox(_userUuid);
     await box.put(taskModel.uuid, taskModel.toJson());
     await box.close();
   }
 
   @override
   Future<List<TaskModel>> readAll() async {
-    var box = await Hive.openBox(boxName);
+    var box = await Hive.openBox(_userUuid);
     var taskList = box.values.map((e) => TaskModel.fromJson(e)).toList();
     await box.close();
     return taskList;
@@ -26,7 +26,7 @@ class TaskRepositoryImp implements TaskRepository {
 
   @override
   Future<TaskModel?> readByUuid(String uuid) async {
-    var box = await Hive.openBox(boxName);
+    var box = await Hive.openBox(_userUuid);
     var taskJson = box.get(uuid);
     var taskModel = taskJson == null ? null : TaskModel.fromJson(taskJson);
     await box.close();
@@ -43,7 +43,7 @@ class TaskRepositoryImp implements TaskRepository {
     } else {
       endFilter = DateTime(end.year, end.month, end.day, 23, 59, 59);
     }
-    var box = await Hive.openBox(boxName);
+    var box = await Hive.openBox(_userUuid);
 
     var taskList = box.values.map((e) => TaskModel.fromJson(e)).toList();
     var taskFiltered = <TaskModel>[];
@@ -65,22 +65,27 @@ class TaskRepositoryImp implements TaskRepository {
 
   @override
   Future<void> update(TaskModel taskModel) async {
-    var box = await Hive.openBox(boxName);
+    var box = await Hive.openBox(_userUuid);
     await box.put(taskModel.uuid, taskModel.toJson());
     await box.close();
   }
 
   @override
   Future<void> deleteAll() async {
-    var box = await Hive.openBox(boxName);
+    var box = await Hive.openBox(_userUuid);
     await box.deleteFromDisk();
     await box.close();
   }
 
   @override
   Future<void> deleteByUuid(String uuid) async {
-    var box = await Hive.openBox(boxName);
+    var box = await Hive.openBox(_userUuid);
     await box.delete(uuid);
     await box.close();
+  }
+
+  @override
+  void setUserUuid(String uuid) {
+    _userUuid = uuid;
   }
 }

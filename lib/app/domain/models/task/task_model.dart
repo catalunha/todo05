@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:uuid/uuid.dart';
 
 class TaskModel {
+  static const String collection = 'task';
+
   final String uuid;
   final String description;
   final DateTime date;

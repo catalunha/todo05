@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:todo05/app/domain/models/task/task_day_model.dart';
+import 'package:todo05/app/domain/models/task/tasks_day_model.dart';
 import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
 
 class TasksByDay extends StatelessWidget {

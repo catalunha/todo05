@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:todo05/app/data/datasources/hive/task/task_repository_exception.dart';
-import 'package:todo05/app/domain/models/task/task_day_model.dart';
+import 'package:todo05/app/domain/models/task/tasks_day_model.dart';
 import 'package:todo05/app/domain/models/task/task_model.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
 import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
@@ -12,12 +12,12 @@ import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.d
 import 'package:todo05/app/routes.dart';
 
 class HomeController extends GetxController with LoaderMixin, MessageMixin {
-  final TaskUseCase _taskService;
+  final TaskUseCase _taskUserCase;
   final UserService _userService;
   HomeController({
     required TaskUseCase taskService,
     required UserService userService,
-  })  : _taskService = taskService,
+  })  : _taskUserCase = taskService,
         _userService = userService;
 
   UserModel get userModel => _userService.userModel;
@@ -43,18 +43,18 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
   }
 
   Future<void> rescheduleTask() async {
-    List<TaskModel> _list = await _taskService.readAll();
+    List<TaskModel> _list = await _taskUserCase.readAll();
     var now = DateTime.now();
     final yesterday = DateTime(now.year, now.month, now.day - 1, 23, 59, 0);
     for (var item in _list) {
       if (item.date.isBefore(yesterday)) {
-        _taskService.update(item.copyWith(date: now));
+        _taskUserCase.update(item.copyWith(date: now));
       }
     }
   }
 
   Future<void> tasksByDay() async {
-    List<TaskModel> _allTasks = await _taskService.readAll();
+    List<TaskModel> _allTasks = await _taskUserCase.readAll();
     Map<String, TasksDayModel> _tasksByDay = {};
     for (var item in _allTasks) {
       _tasksByDay.update(
@@ -82,8 +82,8 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
     groupDate.value = dateFormat.format(date);
 
     try {
-      List<TaskModel> _list = await _taskService.readByPeriod(start: date);
-      // List<TaskModel> _list2 = await _taskService.readAll();
+      List<TaskModel> _list = await _taskUserCase.readByPeriod(start: date);
+      // List<TaskModel> _list2 = await _taskUserCase.readAll();
       // print('::: loadTasks - 2a (${_list2.length})');
       List<TaskModel> _itsDone =
           _list.where((task) => task.itsDone == true).toList();
@@ -113,7 +113,7 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
 
   Future<void> toggleDoneTask(TaskModel task) async {
     final taskUpdated = task.copyWith(itsDone: !task.itsDone);
-    await _taskService.update(taskUpdated);
+    await _taskUserCase.update(taskUpdated);
     await loadTasks(taskUpdated.date);
     await tasksByDay();
   }

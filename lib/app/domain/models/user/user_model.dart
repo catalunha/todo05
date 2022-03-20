@@ -69,7 +69,7 @@ class UserModel {
       email: map['email'] ?? '',
       displayName: map['displayName'],
       photoUrl: map['photoUrl'],
-      database: map['database'],
+      database: map['database'] ?? '',
       doing: map['doing'] ?? false,
       createdAt: DateTime.fromMillisecondsSinceEpoch(
           map['createdAt'].millisecondsSinceEpoch),
