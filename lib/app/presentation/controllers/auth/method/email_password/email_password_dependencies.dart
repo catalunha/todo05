@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:todo05/app/presentation/controllers/auth/method/email_password/email_password_controller.dart';
 
-class AuthEmailPasswordBinding implements Bindings {
+class AuthEmailPasswordDependencies implements Bindings {
   @override
   void dependencies() {
     Get.lazyPut<EmailPasswordController>(

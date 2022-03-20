@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import 'package:todo05/app/presentation/controllers/auth/auth_binding.dart';
-import 'package:todo05/app/presentation/controllers/auth/login/login_binding.dart';
-import 'package:todo05/app/presentation/controllers/auth/method/email_password/email_password_binding.dart';
-import 'package:todo05/app/presentation/controllers/home/home_binding.dart';
+import 'package:todo05/app/presentation/controllers/auth/auth_dependencies.dart';
+import 'package:todo05/app/presentation/controllers/auth/login/login_dependencies.dart';
+import 'package:todo05/app/presentation/controllers/auth/method/email_password/email_password_dependencies.dart';
+import 'package:todo05/app/presentation/controllers/home/home_dependencies.dart';
 import 'package:todo05/app/presentation/controllers/task/append/task_append_binding.dart';
-import 'package:todo05/app/presentation/controllers/user/user_additional_info/user_additional_info_binding.dart';
+import 'package:todo05/app/presentation/controllers/user/user_additional_info/user_additional_info_dependencies.dart';
 import 'package:todo05/app/presentation/pages/auth/login/login_page.dart';
 import 'package:todo05/app/presentation/pages/auth/method/email_password/email_password_page.dart';
 import 'package:todo05/app/presentation/pages/error/erro_page.dart';
@@ -31,22 +31,22 @@ class Routes {
     ),
     GetPage(
       name: Routes.splash,
-      binding: AuthBinding(),
+      binding: AuthDependencies(),
       page: () => const SplashPage(),
     ),
     GetPage(
       name: Routes.authLogin,
-      binding: AuthLoginBinding(),
+      binding: AuthLoginDependencies(),
       page: () => AuthLoginPage(),
     ),
     GetPage(
       name: Routes.authEmailPassword,
-      binding: AuthEmailPasswordBinding(),
+      binding: AuthEmailPasswordDependencies(),
       page: () => AuthEmailPasswordPage(),
     ),
     GetPage(
       name: Routes.userAdditionalInfo,
-      binding: UserAdditionalInfoBinding(),
+      binding: UserAdditionalInfoDependencies(),
       page: () => UserAdditionalInfoPage(),
     ),
     GetPage(
@@ -55,7 +55,7 @@ class Routes {
     ),
     GetPage(
       name: Routes.home,
-      binding: HomeBinding(),
+      binding: HomeDependencies(),
       page: () => HomePage(),
     ),
     GetPage(

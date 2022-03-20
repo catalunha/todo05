@@ -3,11 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:todo05/app/data/datasources/firebase/auth/auth_repository_impl.dart';
 import 'package:todo05/app/data/repositories/auth_repository.dart';
-import 'package:todo05/app/domain/usecases/auth/auth_service.dart';
-import 'package:todo05/app/domain/usecases/auth/auth_service_impl.dart';
+import 'package:todo05/app/domain/usecases/auth/auth_usecase.dart';
+import 'package:todo05/app/domain/usecases/auth/auth_usecase_impl.dart';
 import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
 
-class AuthBinding implements Bindings {
+class AuthDependencies implements Bindings {
   @override
   void dependencies() {
     Get.put<FirebaseAuth>(
@@ -24,8 +24,8 @@ class AuthBinding implements Bindings {
       ),
       permanent: true,
     );
-    Get.put<AuthService>(
-      AuthServiceImpl(
+    Get.put<AuthUseCase>(
+      AuthUseCaseImpl(
         authRepository: Get.find(),
       ),
       permanent: true,

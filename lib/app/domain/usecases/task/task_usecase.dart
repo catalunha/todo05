@@ -1,6 +1,6 @@
 import 'package:todo05/app/domain/models/task/task_model.dart';
 
-abstract class TaskService {
+abstract class TaskUseCase {
   Future<void> create(TaskModel taskModel);
   Future<List<TaskModel>> readAll();
   Future<TaskModel?> readByUuid(String uuid);

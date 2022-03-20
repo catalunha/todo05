@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:todo05/app/data/datasources/firebase/auth/auth_repository_exception.dart';
-import 'package:todo05/app/domain/usecases/auth/auth_service.dart';
+import 'package:todo05/app/domain/usecases/auth/auth_usecase.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
 
@@ -9,8 +9,8 @@ class EmailPasswordController extends GetxController
   final _loading = false.obs;
   final _message = Rxn<MessageModel>();
 
-  final AuthService _authService;
-  EmailPasswordController({required AuthService authService})
+  final AuthUseCase _authService;
+  EmailPasswordController({required AuthUseCase authService})
       : _authService = authService;
 
   @override

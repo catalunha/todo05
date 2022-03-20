@@ -4,19 +4,19 @@ import 'package:todo05/app/data/datasources/hive/task/task_repository_exception.
 import 'package:todo05/app/domain/models/task/task_day_model.dart';
 import 'package:todo05/app/domain/models/task/task_model.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
-import 'package:todo05/app/domain/usecases/task/task_service.dart';
-import 'package:todo05/app/domain/usecases/task/task_service_exception.dart';
-import 'package:todo05/app/presentation/controllers/user/user_additional_info/usermodel_service.dart';
+import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
+import 'package:todo05/app/domain/usecases/task/task_usecase_exception.dart';
+import 'package:todo05/app/domain/usecases/user/user_service.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
 import 'package:todo05/app/routes.dart';
 
 class HomeController extends GetxController with LoaderMixin, MessageMixin {
-  final TaskService _taskService;
-  final UserModelService _userModelService;
+  final TaskUseCase _taskService;
+  final UserService _userModelService;
   HomeController({
-    required TaskService taskService,
-    required UserModelService userModelService,
+    required TaskUseCase taskService,
+    required UserService userModelService,
   })  : _taskService = taskService,
         _userModelService = userModelService;
 
@@ -90,7 +90,7 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
       List<TaskModel> _notItsDone =
           _list.where((task) => task.itsDone == false).toList();
       allTasks([..._notItsDone, ..._itsDone]);
-    } on TaskServiceException catch (e) {
+    } on TaskUseCaseException catch (e) {
       _message.value = MessageModel(
         title: 'Erro em Service',
         message: 'Nao consigo encontrar tasks',

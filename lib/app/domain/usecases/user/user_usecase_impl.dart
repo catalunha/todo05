@@ -1,10 +1,10 @@
 import 'package:todo05/app/data/repositories/user_repository.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
-import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/domain/usecases/user/user_usecase.dart';
 
-class UserServiceImpl implements UserService {
+class UserUseCaseImpl implements UserUseCase {
   final UserRepository _userRepository;
-  UserServiceImpl({required UserRepository userRepository})
+  UserUseCaseImpl({required UserRepository userRepository})
       : _userRepository = userRepository;
   @override
   Future<UserModel?> getByUidAuth(String uidAuth) async {

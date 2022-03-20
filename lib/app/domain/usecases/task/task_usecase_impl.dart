@@ -1,16 +1,16 @@
 import 'package:todo05/app/data/datasources/hive/task/task_repository_impl.dart';
 import 'package:todo05/app/data/repositories/task_repository.dart';
 import 'package:todo05/app/domain/models/task/task_model.dart';
-import 'package:todo05/app/domain/usecases/task/task_service.dart';
-import 'package:todo05/app/presentation/controllers/user/user_additional_info/usermodel_service.dart';
+import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
+import 'package:todo05/app/domain/usecases/user/user_service.dart';
 
-class TaskServiceImp implements TaskService {
+class TaskUseCaseImp implements TaskUseCase {
   TaskRepository _taskRepository;
-  UserModelService _userModelService;
+  UserService _userModelService;
 
-  TaskServiceImp({
+  TaskUseCaseImp({
     required TaskRepository taskRepository,
-    required UserModelService userModelService,
+    required UserService userModelService,
   })  : _taskRepository = taskRepository,
         _userModelService = userModelService;
 

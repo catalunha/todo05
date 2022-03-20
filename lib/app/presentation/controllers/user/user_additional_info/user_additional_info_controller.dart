@@ -2,9 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:todo05/app/data/datasources/firebase/user/user_repository_exception.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
-import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/domain/usecases/user/user_usecase.dart';
 import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
-import 'package:todo05/app/presentation/controllers/user/user_additional_info/usermodel_service.dart';
+import 'package:todo05/app/domain/usecases/user/user_service.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
 import 'package:todo05/app/routes.dart';
@@ -12,10 +12,10 @@ import 'package:todo05/app/routes.dart';
 class UserAdditionalInfoController extends GetxController
     with LoaderMixin, MessageMixin {
   final AuthController _authController;
-  final UserService _userService;
+  final UserUseCase _userService;
   UserAdditionalInfoController({
     required AuthController authController,
-    required UserService userService,
+    required UserUseCase userService,
   })  : _authController = authController,
         _userService = userService;
 
@@ -99,7 +99,7 @@ class UserAdditionalInfoController extends GetxController
       print('indo para userAnalyzingInfo');
       Get.offAllNamed(Routes.userAnalyzingInfo);
     } else {
-      var controller = Get.find<UserModelService>();
+      var controller = Get.find<UserService>();
       controller.userModel = UserModel.fromMap(_userModel!.toMap());
       print('indo para home');
       Get.offAllNamed(Routes.home);

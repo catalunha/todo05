@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 import 'package:todo05/app/data/datasources/hive/task/task_repository_exception.dart';
 import 'package:todo05/app/domain/models/task/task_model.dart';
-import 'package:todo05/app/domain/usecases/task/task_service.dart';
+import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
 import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
@@ -9,8 +9,8 @@ import 'package:uuid/uuid.dart';
 
 class TaskAppendController extends GetxController
     with LoaderMixin, MessageMixin {
-  TaskService _taskService;
-  TaskAppendController({required TaskService taskService})
+  TaskUseCase _taskService;
+  TaskAppendController({required TaskUseCase taskService})
       : _taskService = taskService;
 
   final _loading = false.obs;

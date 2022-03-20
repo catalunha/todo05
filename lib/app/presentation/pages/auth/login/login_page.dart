@@ -51,7 +51,10 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                     SizedBox(height: 10),
                     AppLogo(),
                     Text('ToDo', style: context.textTheme.headline6),
-                    Text('(com V-VM-M, GetX, Isar, Firebase Auth/Firestore)'),
+                    const Text(
+                      '(com ~CleanCode/~MVVM, GetX, Hive, Isar?, Firebase Auth/Firestore)',
+                      textAlign: TextAlign.center,
+                    ),
                     // Text('Todo List', style: Theme.of(context).textTheme.headline6),
                     Padding(
                       padding: const EdgeInsets.symmetric(
