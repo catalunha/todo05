@@ -40,6 +40,15 @@ class PopMenuButtonPhotoUser extends StatelessWidget {
         return [
           PopupMenuItem(
             child: TextButton.icon(
+              label: const Text('Editar perfil'),
+              onPressed: () {
+                _authController.logout();
+              },
+              icon: const Icon(Icons.person_outline_outlined),
+            ),
+          ),
+          PopupMenuItem(
+            child: TextButton.icon(
               label: const Text('Sair'),
               onPressed: () {
                 _authController.logout();
