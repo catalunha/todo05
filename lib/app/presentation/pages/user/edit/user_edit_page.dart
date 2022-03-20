@@ -1,0 +1,95 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:todo05/app/presentation/controllers/user/edit/user_edit_controller.dart';
+import 'package:todo05/app/presentation/pages/utils/part/app_text_form_field.dart';
+import 'package:validatorless/validatorless.dart';
+
+class UserEditPage extends StatefulWidget {
+  UserEditPage({Key? key}) : super(key: key);
+  final UserEditController _userEditController = Get.find();
+
+  @override
+  _UserEditPageState createState() => _UserEditPageState();
+}
+
+class _UserEditPageState extends State<UserEditPage> {
+  final _formKey = GlobalKey<FormState>();
+  final _displayNameTec = TextEditingController();
+  final _photoUrlTec = TextEditingController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _displayNameTec.text =
+        widget._userEditController.userModel!.displayName ?? "";
+    _photoUrlTec.text = widget._userEditController.userModel!.photoUrl ?? "";
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        elevation: 0,
+        actions: [
+          IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: Icon(
+                Icons.close,
+                color: Colors.black,
+              ))
+        ],
+      ),
+      body: Form(
+        key: _formKey,
+        child: Container(
+          margin: EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: Text('Editar User'),
+              ),
+              SizedBox(height: 30),
+              AppTextFormField(
+                label: 'Nome',
+                controller: _displayNameTec,
+                // validator: Validatorless.required('Nome obrigatório'),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              AppTextFormField(
+                label: 'Foto',
+                controller: _photoUrlTec,
+                // validator: Validatorless.required('Foto obrigatório'),
+              ),
+              SizedBox(height: 20),
+            ],
+          ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        // backgroundColor: context.primaryColor,
+        onPressed: () async {
+          final formValid = _formKey.currentState?.validate() ?? false;
+          if (formValid) {
+            await widget._userEditController.updateData(
+                displayName: _displayNameTec.text, photoUrl: _photoUrlTec.text);
+            Get.back();
+          }
+        },
+        label: Text(
+          'Salvar',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
