@@ -6,6 +6,17 @@ class UserService extends GetxService {
   UserModel get userModel => _userModel.value!;
   set userModel(UserModel userModel) {
     _userModel(userModel);
+    // _userModel.update(
+    //   (value) {
+    //     value!.displayName = userModel.displayName;
+    //   },
+    // );
+    // _userModel.update(
+    //   (value) {
+    //     value!.photoUrl = userModel.photoUrl;
+    //   },
+    // );
+    print('+++ UserService: ${userModel.toString()}');
   }
   // set userModel2(UserModel? userModel2) {
   //   _userModel2(userModel2);

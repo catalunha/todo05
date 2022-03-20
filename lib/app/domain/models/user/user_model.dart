@@ -6,8 +6,8 @@ class UserModel {
   final String uuid;
   final String uidAuth;
   final String email;
-  final String? displayName;
-  final String? photoUrl;
+  String? displayName;
+  String? photoUrl;
   final bool doing;
   final DateTime createdAt;
   final bool inAnalysis;

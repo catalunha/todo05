@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo05/app/domain/usecases/user/user_service.dart';
 import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
 import 'package:todo05/app/presentation/pages/home/part/pop_menu_photouser.dart';
 import 'package:todo05/app/presentation/pages/home/part/task/group/tasks_by_day_list.dart';
@@ -7,7 +8,7 @@ import 'package:todo05/app/presentation/pages/home/part/task/list/task_list.dart
 
 class HomePage extends StatefulWidget {
   final HomeController _homeController = Get.find();
-  // UserController _userController = Get.find();
+  // UserService _userService = Get.find();
   HomePage({Key? key}) : super(key: key);
 
   @override
@@ -28,12 +29,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Olá, ${widget._homeController.userModel.displayName ?? "Sem nome"}',
-          // 'Olá, ${widget._homeController.userModel.uuid}',
+        title: Obx(() => Text(
+              // 'Olá, ${widget._homeController.userService.userModel.displayName ?? "Sem nome"}',
+              'Olá, ${widget._homeController.userModel.displayName ?? "Sem nome"}',
+              // 'Oi, ${widget._userService.userModel.uuid}',
 
-          style: TextStyle(color: Colors.black),
-        ),
+              style: TextStyle(color: Colors.black),
+            )),
         // iconTheme: IconThemeData(color: context.primaryColor),
         backgroundColor: Colors.white,
         elevation: 2,

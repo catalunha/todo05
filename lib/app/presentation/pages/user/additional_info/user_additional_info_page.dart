@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo05/app/presentation/controllers/user/user_additional_info/user_additional_info_controller.dart';
+import 'package:todo05/app/presentation/controllers/user/additional_info/user_additional_info_controller.dart';
 
 class UserAdditionalInfoPage extends StatefulWidget {
   final UserAdditionalInfoController _userController = Get.find();

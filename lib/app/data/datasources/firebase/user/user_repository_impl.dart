@@ -67,8 +67,15 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<void> update(Map<String, dynamic> data) {
-    // TODO: implement update
-    throw UnimplementedError();
+  Future<void> update(UserModel userModel) async {
+    try {
+      DocumentReference colRef = _firebaseFirestore
+          .collection(UserModel.collection)
+          .doc(userModel.uuid);
+      await colRef.update(userModel.toMap());
+    } catch (e) {
+      throw UserRepositoryException(
+          message: 'Erro em UserRepositoryImpl.update');
+    }
   }
 }

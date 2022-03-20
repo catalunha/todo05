@@ -3,8 +3,8 @@ import 'package:todo05/app/data/datasources/firebase/user/user_repository_impl.d
 import 'package:todo05/app/data/repositories/user_repository.dart';
 import 'package:todo05/app/domain/usecases/user/user_usecase.dart';
 import 'package:todo05/app/domain/usecases/user/user_usecase_impl.dart';
-import 'package:todo05/app/presentation/controllers/user/user_additional_info/user_additional_info_controller.dart';
 import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/presentation/controllers/user/additional_info/user_additional_info_controller.dart';
 
 class UserAdditionalInfoDependencies implements Bindings {
   @override

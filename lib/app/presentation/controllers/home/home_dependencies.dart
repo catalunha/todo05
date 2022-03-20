@@ -18,7 +18,7 @@ class HomeDependencies implements Bindings {
     Get.lazyPut<HomeController>(
       () => HomeController(
         taskService: Get.find(),
-        userModelService: Get.find(),
+        userService: Get.find(),
       ),
     );
   }

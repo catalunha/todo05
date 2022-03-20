@@ -13,14 +13,14 @@ import 'package:todo05/app/routes.dart';
 
 class HomeController extends GetxController with LoaderMixin, MessageMixin {
   final TaskUseCase _taskService;
-  final UserService _userModelService;
+  final UserService _userService;
   HomeController({
     required TaskUseCase taskService,
-    required UserService userModelService,
+    required UserService userService,
   })  : _taskService = taskService,
-        _userModelService = userModelService;
+        _userService = userService;
 
-  UserModel get userModel => _userModelService.userModel;
+  UserModel get userModel => _userService.userModel;
 
   final _loading = false.obs;
   final _message = Rxn<MessageModel>();

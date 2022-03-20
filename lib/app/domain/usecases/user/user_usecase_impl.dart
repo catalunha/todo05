@@ -17,4 +17,9 @@ class UserUseCaseImpl implements UserUseCase {
     print('Em UserRepositoryImpl.create');
     return await _userRepository.create(data);
   }
+
+  @override
+  Future<void> update(UserModel userModel) async {
+    await _userRepository.update(userModel);
+  }
 }

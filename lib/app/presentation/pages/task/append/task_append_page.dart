@@ -17,8 +17,8 @@ class TaskAppendPage extends StatefulWidget {
 }
 
 class _TaskAppendPageState extends State<TaskAppendPage> {
-  final _descriptionTec = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  final _descriptionTec = TextEditingController();
   @override
   void initState() {
     super.initState();

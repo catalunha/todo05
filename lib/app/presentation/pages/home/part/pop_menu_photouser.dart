@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
+import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
+import 'package:todo05/app/routes.dart';
 
 class PopMenuButtonPhotoUser extends StatelessWidget {
-  AuthController _authController = Get.find();
+  final HomeController _homeController = Get.find();
+  final AuthController _authController = Get.find();
   final UserDisplayNameVN = ValueNotifier<String>('');
   final UserPhotoUrlVN = ValueNotifier<String>('');
 
@@ -15,24 +18,25 @@ class PopMenuButtonPhotoUser extends StatelessWidget {
       offset: Offset.fromDirection(120.0, 100.0),
       child: Tooltip(
         message: 'Click para opções',
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: _authController.user?.photoURL != null
-              ? Image.network(
-                  '${_authController.user?.photoURL}',
-                  // loadingBuilder: (_, __, ___) {
-                  //   return Center(child: const CircularProgressIndicator());
-                  // },
-                  height: 58,
-                  width: 58,
-                  errorBuilder: (_, __, ___) {
-                    return const Icon(
-                      Icons.person,
-                      color: Colors.black,
-                    );
-                  },
-                )
-              : const Icon(Icons.person, color: Colors.black),
+        child: Obx(
+          () => ClipRRect(
+              borderRadius: BorderRadius.circular(8.0),
+              child: _homeController.userModel.photoUrl != null
+                  ? Image.network(
+                      '${_homeController.userModel.photoUrl}',
+                      // loadingBuilder: (_, __, ___) {
+                      //   return Center(child: const CircularProgressIndicator());
+                      // },
+                      height: 58,
+                      width: 58,
+                      errorBuilder: (_, __, ___) {
+                        return const Icon(
+                          Icons.person,
+                          color: Colors.black,
+                        );
+                      },
+                    )
+                  : const Icon(Icons.person, color: Colors.black)),
         ),
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
@@ -42,7 +46,8 @@ class PopMenuButtonPhotoUser extends StatelessWidget {
             child: TextButton.icon(
               label: const Text('Editar perfil'),
               onPressed: () {
-                _authController.logout();
+                Get.back();
+                Get.toNamed(Routes.userEdit);
               },
               icon: const Icon(Icons.person_outline_outlined),
             ),
