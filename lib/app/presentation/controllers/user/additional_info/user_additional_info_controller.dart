@@ -109,7 +109,7 @@ class UserAdditionalInfoController extends GetxController
   Map<String, dynamic> userFieldsBasics() {
     Map<String, dynamic> data = {};
     //Dados basicos do userModel - internos
-    data['createdAt'] = DateTime.now().toIso8601String();
+    data['createdAt'] = DateTime.now();
     data['inAnalysis'] = true;
     return data;
   }

@@ -36,7 +36,7 @@ class TaskModel {
     return {
       'uuid': uuid,
       'description': description,
-      'date': date.toIso8601String(),
+      'date': date,
       'itsDone': itsDone,
       'itsDoing': itsDoing,
     };
@@ -46,17 +46,24 @@ class TaskModel {
     return TaskModel(
       uuid: map['uuid'] ?? '',
       description: map['description'] ?? '',
-      date: DateTime.tryParse(map['date'] as String) ?? DateTime.now(),
+      date: DateTime.fromMillisecondsSinceEpoch(
+          map['date'].millisecondsSinceEpoch),
       itsDone: map['itsDone'] ?? false,
       itsDoing: map['itsDoing'] ?? false,
     );
   }
 
-  String toJson() => json.encode(toMap());
+  String toJson() {
+    var map = toMap();
+    map['date'] = date.toIso8601String();
+    return json.encode(map);
+  }
 
-  factory TaskModel.fromJson(String source) =>
-      TaskModel.fromMap(json.decode(source));
-
+  factory TaskModel.fromJson(String source) {
+    var map = json.decode(source);
+    map['date'] = DateTime.tryParse(map['date'] as String) ?? DateTime.now();
+    return TaskModel.fromMap(map);
+  }
   @override
   String toString() {
     return 'TaskModel(uuid: $uuid, description: $description, date: $date, itsDone: $itsDone, itsDoing: $itsDoing)';

@@ -52,13 +52,14 @@ class UserModel {
       'displayName': displayName,
       'photoUrl': photoUrl,
       'doing': doing,
-      // 'createdAt': createdAt,
-      'createdAt': createdAt.toIso8601String(),
+      'createdAt': createdAt,
       'inAnalysis': inAnalysis,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
+    print('++++++ ${map['createdAt'].runtimeType}');
+    print('++++++ ${map['createdAt']}');
     return UserModel(
       uuid: map['uuid'] ?? '',
       uidAuth: map['uidAuth'] ?? '',
@@ -66,18 +67,28 @@ class UserModel {
       displayName: map['displayName'],
       photoUrl: map['photoUrl'],
       doing: map['doing'] ?? false,
-      // createdAt: DateTime.fromMillisecondsSinceEpoch(
-      //     map['createdAt'].millisecondsSinceEpoch),
-      createdAt:
-          DateTime.tryParse(map['createdAt'] as String) ?? DateTime.now(),
+      createdAt: DateTime.fromMillisecondsSinceEpoch(
+          map['createdAt'].millisecondsSinceEpoch),
       inAnalysis: map['inAnalysis'] ?? false,
     );
   }
 
-  String toJson() => json.encode(toMap());
+  // String toJson() => json.encode(toMap());
 
-  factory UserModel.fromJson(String source) =>
-      UserModel.fromMap(json.decode(source));
+  // factory UserModel.fromJson(String source) =>
+  //     UserModel.fromMap(json.decode(source));
+  String toJson() {
+    var map = toMap();
+    map['createdAt'] = createdAt.toIso8601String();
+    return json.encode(map);
+  }
+
+  factory UserModel.fromJson(String source) {
+    var map = json.decode(source);
+    map['createdAt'] =
+        DateTime.tryParse(map['createdAt'] as String) ?? DateTime.now();
+    return UserModel.fromMap(map);
+  }
 
   @override
   String toString() {
