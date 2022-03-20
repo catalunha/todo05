@@ -3,7 +3,7 @@ import 'package:todo05/app/presentation/controllers/auth/auth_dependencies.dart'
 import 'package:todo05/app/presentation/controllers/auth/login/login_dependencies.dart';
 import 'package:todo05/app/presentation/controllers/auth/method/email_password/email_password_dependencies.dart';
 import 'package:todo05/app/presentation/controllers/home/home_dependencies.dart';
-import 'package:todo05/app/presentation/controllers/task/append/task_append_binding.dart';
+import 'package:todo05/app/presentation/controllers/task/append/task_append_dependencies.dart';
 import 'package:todo05/app/presentation/controllers/user/additional_info/user_additional_info_dependencies.dart';
 import 'package:todo05/app/presentation/controllers/user/edit/user_edit_dependencies.dart';
 import 'package:todo05/app/presentation/pages/auth/login/login_page.dart';
@@ -68,7 +68,7 @@ class Routes {
     ),
     GetPage(
       name: Routes.taskAppend,
-      binding: TaskAppendBinding(),
+      binding: TaskAppendDependencies(),
       page: () => TaskAppendPage(),
     ),
   ];

@@ -5,7 +5,7 @@ import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
 import 'package:todo05/app/domain/usecases/task/task_usecase_impl.dart';
 import 'package:todo05/app/presentation/controllers/task/append/task_append_controller.dart';
 
-class TaskAppendBinding implements Bindings {
+class TaskAppendDependencies implements Bindings {
   @override
   void dependencies() {
     Get.put<TaskRepository>(
@@ -15,6 +15,6 @@ class TaskAppendBinding implements Bindings {
       TaskUseCaseImp(taskRepository: Get.find(), userModelService: Get.find()),
     );
     Get.lazyPut<TaskAppendController>(
-        () => TaskAppendController(taskService: Get.find()));
+        () => TaskAppendController(taskUseCase: Get.find()));
   }
 }

@@ -98,7 +98,7 @@ class _TaskAppendPageState extends State<TaskAppendPage> {
         onPressed: () async {
           final formValid = _formKey.currentState?.validate() ?? false;
           if (formValid) {
-            await widget._taskCreateController.create(_descriptionTec.text);
+            await widget._taskCreateController.append(_descriptionTec.text);
             Get.back();
           }
         },

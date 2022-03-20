@@ -9,9 +9,9 @@ import 'package:uuid/uuid.dart';
 
 class TaskAppendController extends GetxController
     with LoaderMixin, MessageMixin {
-  TaskUseCase _taskService;
-  TaskAppendController({required TaskUseCase taskService})
-      : _taskService = taskService;
+  TaskUseCase _taskUseCase;
+  TaskAppendController({required TaskUseCase taskUseCase})
+      : _taskUseCase = taskUseCase;
 
   final _loading = false.obs;
   final _message = Rxn<MessageModel>();
@@ -43,7 +43,7 @@ class TaskAppendController extends GetxController
     print('_taskModel: ${_taskModel.value == null}');
   }
 
-  Future<void> create(String description) async {
+  Future<void> append(String description) async {
     try {
       _loading(true);
       DateTime date =
@@ -55,15 +55,11 @@ class TaskAppendController extends GetxController
             date: date,
             itsDone: false,
             itsDoing: false);
-        print('create 0: ${taskModel.toString()}');
-        print('create 0: ${taskModel.toMap()}');
-        print('create 0: ${taskModel.toJson()}');
-
-        await _taskService.create(taskModel);
+        await _taskUseCase.create(taskModel);
       } else {
         var taskModel =
             _taskModel.value!.copyWith(date: date, description: description);
-        await _taskService.update(taskModel);
+        await _taskUseCase.update(taskModel);
       }
       final HomeController _homeController = Get.find();
       await _homeController.loadTasks(date);
@@ -80,7 +76,7 @@ class TaskAppendController extends GetxController
   }
 
   Future<void> deleteByUuid(String uuid) async {
-    await _taskService.deleteByUuid(uuid);
+    await _taskUseCase.deleteByUuid(uuid);
     final HomeController _homeController = Get.find();
 
     DateTime date =
