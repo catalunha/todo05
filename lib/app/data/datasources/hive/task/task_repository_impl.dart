@@ -8,18 +8,11 @@ class TaskRepositoryImp implements TaskRepository {
   TaskRepositoryImp();
 
   static var boxName = "task";
-  // String boxName {
-  //   print('boxName: ${_userModelService.userModel2!.uuid}');
-  //   return _userModelService.userModel2!.uuid;
-  // }
 
   @override
   Future<void> create(TaskModel taskModel) async {
     var box = await Hive.openBox(boxName);
     await box.put(taskModel.uuid, taskModel.toJson());
-    var taskJson = box.get(taskModel.uuid);
-    var taskModel2 = taskJson == null ? null : TaskModel.fromJson(taskJson);
-    if (taskModel2 != null) {}
     await box.close();
   }
 
