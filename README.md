@@ -2,6 +2,20 @@
 ## [1.0.0]
 
 
+
+# Branchs
+
+## [Master/main]
+Com cleanCode e HiveMap.
+## [cleanCode]
+Construção em cleanCode e foi para master
+## [HiveMap]
+Apenas armazenando o Hive no formato mapa para testar o HiveAdpater. 
+## [HiveAdapter]
+Nao achei interessante o hive adapter pelo foco do app ser buscar por datas e achei mais interessante o armazenamento puro em map.
+## [mvvm]
+versao inicial com mvvm
+
 # Estrutura
 Leituras para analise e adaptação deste projeto a, View - ViewModel - Model e CleanCode:
 * http://kyubid.com/blog/mvvm-android-tutorial-01-mvc-vs-mvp-vs-mvvm/
