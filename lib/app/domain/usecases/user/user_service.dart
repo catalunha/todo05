@@ -16,7 +16,6 @@ class UserService extends GetxService {
     //     value!.photoUrl = userModel.photoUrl;
     //   },
     // );
-    print('+++ UserService: ${userModel.toString()}');
   }
   // set userModel2(UserModel? userModel2) {
   //   _userModel2(userModel2);

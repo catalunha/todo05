@@ -9,6 +9,7 @@ class UserModel {
   String? displayName;
   String? photoUrl;
   final bool doing;
+  final String database;
   final DateTime createdAt;
   final bool inAnalysis;
   UserModel({
@@ -18,6 +19,7 @@ class UserModel {
     this.displayName,
     this.photoUrl,
     required this.doing,
+    required this.database,
     required this.createdAt,
     required this.inAnalysis,
   });
@@ -29,6 +31,7 @@ class UserModel {
     String? displayName,
     String? photoUrl,
     bool? doing,
+    String? database,
     DateTime? createdAt,
     bool? inAnalysis,
   }) {
@@ -39,6 +42,7 @@ class UserModel {
       displayName: displayName ?? this.displayName,
       photoUrl: photoUrl ?? this.photoUrl,
       doing: doing ?? this.doing,
+      database: database ?? this.database,
       createdAt: createdAt ?? this.createdAt,
       inAnalysis: inAnalysis ?? this.inAnalysis,
     );
@@ -52,20 +56,20 @@ class UserModel {
       'displayName': displayName,
       'photoUrl': photoUrl,
       'doing': doing,
+      'database': database,
       'createdAt': createdAt,
       'inAnalysis': inAnalysis,
     };
   }
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
-    print('++++++ ${map['createdAt'].runtimeType}');
-    print('++++++ ${map['createdAt']}');
     return UserModel(
       uuid: map['uuid'] ?? '',
       uidAuth: map['uidAuth'] ?? '',
       email: map['email'] ?? '',
       displayName: map['displayName'],
       photoUrl: map['photoUrl'],
+      database: map['database'],
       doing: map['doing'] ?? false,
       createdAt: DateTime.fromMillisecondsSinceEpoch(
           map['createdAt'].millisecondsSinceEpoch),
@@ -92,7 +96,7 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(uuid: $uuid, uidAuth: $uidAuth, email: $email, displayName: $displayName, photoUrl: $photoUrl, doing: $doing, createdAt: $createdAt, inAnalysis: $inAnalysis)';
+    return 'UserModel(uuid: $uuid, uidAuth: $uidAuth, email: $email, displayName: $displayName, photoUrl: $photoUrl, database: $database, doing: $doing, createdAt: $createdAt, inAnalysis: $inAnalysis)';
   }
 
   @override
@@ -105,6 +109,7 @@ class UserModel {
         other.email == email &&
         other.displayName == displayName &&
         other.photoUrl == photoUrl &&
+        other.database == database &&
         other.doing == doing &&
         other.createdAt == createdAt &&
         other.inAnalysis == inAnalysis;
@@ -117,6 +122,7 @@ class UserModel {
         email.hashCode ^
         displayName.hashCode ^
         photoUrl.hashCode ^
+        database.hashCode ^
         doing.hashCode ^
         createdAt.hashCode ^
         inAnalysis.hashCode;
