@@ -1,12 +1,21 @@
 import 'dart:convert';
 
+import 'package:hive/hive.dart';
 import 'package:uuid/uuid.dart';
 
+part 'task_model.g.dart';
+
+@HiveType(typeId: 0)
 class TaskModel {
+  @HiveField(0)
   final String uuid;
+  @HiveField(1)
   final String description;
+  @HiveField(2)
   final DateTime date;
+  @HiveField(3)
   final bool itsDone;
+  @HiveField(4)
   final bool itsDoing;
   TaskModel({
     required this.uuid,

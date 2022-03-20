@@ -78,6 +78,10 @@ class TaskRepositoryImpl implements TaskRepositoryAbstract {
 
 # Databases
 
+## Hive
+
+$ flutter pub run build_runner build  --delete-conflicting-outputs
+
 ## Isar
 Encontrei problemas no Isar e abortei a inclusão esta versão
 1. https://tomicriedel.medium.com/flutter-isar-database-the-complete-crash-course-part-1-bbd08aa7cc4e
