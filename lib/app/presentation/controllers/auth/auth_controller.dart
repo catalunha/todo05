@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:todo05/app/domain/usecases/auth/auth_usecase.dart';
-import 'package:todo05/app/routes.dart';
+import 'package:todo05/app/presentation/routes.dart';
 
 class AuthController extends GetxController {
   final FirebaseAuth _firebaseAuth;

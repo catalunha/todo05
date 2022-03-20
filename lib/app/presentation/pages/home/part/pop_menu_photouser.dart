@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
 import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
-import 'package:todo05/app/routes.dart';
+import 'package:todo05/app/presentation/routes.dart';
 
 class PopMenuButtonPhotoUser extends StatelessWidget {
   final HomeController _homeController = Get.find();

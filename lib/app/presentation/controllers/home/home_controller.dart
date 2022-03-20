@@ -9,7 +9,7 @@ import 'package:todo05/app/domain/usecases/task/task_usecase_exception.dart';
 import 'package:todo05/app/domain/usecases/user/user_service.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
-import 'package:todo05/app/routes.dart';
+import 'package:todo05/app/presentation/routes.dart';
 
 class HomeController extends GetxController with LoaderMixin, MessageMixin {
   final TaskUseCase _taskUserCase;

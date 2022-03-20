@@ -7,7 +7,7 @@ import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
 import 'package:todo05/app/domain/usecases/user/user_service.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
-import 'package:todo05/app/routes.dart';
+import 'package:todo05/app/presentation/routes.dart';
 
 class UserAdditionalInfoController extends GetxController
     with LoaderMixin, MessageMixin {

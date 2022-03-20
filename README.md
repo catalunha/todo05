@@ -89,6 +89,105 @@ class TaskRepositoryImpl implements TaskRepositoryAbstract {
 ```
 
 
+## ToDo-Versão 5 com 2 Databases
+
+1) Estrutura completa do projeto
+```Dart
+lib/app
+├── data
+│   ├── datasources
+│   │   ├── firebase
+│   │   └── hive
+│   └── repositories
+├── domain
+│   ├── models
+│   └── usecases
+└── presentation
+    ├── controllers
+    ├── pages
+    └── routes.dart
+```
+
+2) Repositorio e suas implementações com base em cada banco.
+```
+data
+├── datasources
+│   ├── firebase
+│   │   ├── task
+│   │   │   ├── task_repository_exception.dart
+│   │   │   └── task_repository_firebase_impl.dart
+│   ├── hive
+│   │   ├── task
+│   │   │   ├── task_repository_exception.dart
+│   │   │   └── task_repository_hive_impl.dart
+└── repositories
+    ├── task_repository.dart
+```
+3) O uuid é necessario para separar usuarios. As demais funcões são padrao.
+```Dart
+abstract class TaskRepository {
+  void setUserUuid(String uuid);
+  Future<void> create(TaskModel taskModel);
+  ...
+}
+```
+4) No modelo MVVM seria o taskService. Que em cleanCode coloquei em domain. 
+Mas apenas chama o repo a partir do controle
+```
+domain
+├── models
+│   ├── task
+│   │   ├── task_model.dart
+└── usecases
+    ├── task
+    │   ├── task_usecase.dart
+    │   ├── task_usecase_exception.dart
+    │   └── task_usecase_impl.dart
+```
+5) O exemplo do taskService ou taskUseCase
+```Dart
+class TaskUseCaseImp implements TaskUseCase {
+  @override
+  Future<void> create(TaskModel taskModel) {
+    _taskRepository.setUserUuid(_userService.userModel.uuid);
+    return _taskRepository.create(taskModel);
+  }
+...
+}
+```
+
+6) O controller e o binding.
+```
+presentation/controllers/task
+└── append
+    ├── task_append_controller.dart
+    └── task_append_bindings.dart
+```
+---> 7) Agora vem a escolha de qual implementaçaõ usar ?
+```Dart
+class TaskAppendBindings implements Bindings {
+  @override
+  void dependencies() {
+    var userService = Get.find<UserService>();
+    print('+++ Qual database do usuario: ${userService.userModel.database}');
+    if (userService.userModel.database == 'firebase') {
+      Get.put<TaskRepository>(
+        TaskRepositoryFirebaseImp(firebaseFirestore: Get.find()),
+      );
+    } else {
+      Get.put<TaskRepository>(
+        TaskRepositoryHiveImp(),
+      );
+    }
+    Get.put<TaskUseCase>(
+      TaskUseCaseImp(taskRepository: Get.find(), userService: Get.find()),
+    );
+    Get.lazyPut<TaskAppendController>(
+        () => TaskAppendController(taskUseCase: Get.find()));
+  }
+}
+```
+
 
 # Databases
 
