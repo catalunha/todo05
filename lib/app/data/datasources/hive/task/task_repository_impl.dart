@@ -4,8 +4,8 @@ import 'package:hive/hive.dart';
 import 'package:todo05/app/data/repositories/task_repository.dart';
 import 'package:todo05/app/domain/models/task/task_model.dart';
 
-class TaskRepositoryImp implements TaskRepository {
-  TaskRepositoryImp();
+class TaskRepositoryHiveImp implements TaskRepository {
+  TaskRepositoryHiveImp();
 
   String _userUuid = 'task';
 

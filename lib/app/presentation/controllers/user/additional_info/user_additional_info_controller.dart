@@ -83,12 +83,14 @@ class UserAdditionalInfoController extends GetxController
 
   void setAdditionalInformation({
     required bool doing,
+    required String database,
   }) async {
     getAdditionalInformation(false);
 
     Map<String, dynamic> data = {};
     //Dados coletados na page
     data['doing'] = doing;
+    data['database'] = database;
     print(data);
     await userCreate(data: data);
     goToHomeOrAnalisyng();
@@ -110,7 +112,7 @@ class UserAdditionalInfoController extends GetxController
     Map<String, dynamic> data = {};
     //Dados basicos do userModel - internos
     data['createdAt'] = DateTime.now();
-    data['inAnalysis'] = true;
+    data['inAnalysis'] = false;
     return data;
   }
 

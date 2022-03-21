@@ -91,6 +91,7 @@ class TaskRepositoryImpl implements TaskRepositoryAbstract {
 
 ## ToDo-Versão 5 com 2 Databases
 
+### Modo de resolver 01
 1) Estrutura completa do projeto
 ```Dart
 lib/app
@@ -187,6 +188,7 @@ class TaskAppendBindings implements Bindings {
   }
 }
 ```
+
 ### Resposta do marcus
 ```Dart
 static NetWorkPrint? instance;
@@ -290,6 +292,41 @@ Future<bool> imprimirTef(String payloadTef) async {
   }
 
 ```
+
+
+### Modo de resolver 02
+Usando tags no controller.
+
+```Dart
+class HomeDependencies implements Bindings {
+  @override
+  void dependencies() {
+    var userService = Get.find<UserService>();
+    print('+++ HomeDependencies: ${userService.userModel.database}');
+    Get.put<TaskRepository>(
+      TaskRepositoryFirebaseImp(firebaseFirestore: Get.find()),
+      tag: 'Firebase',
+    );
+    Get.put<TaskRepository>(
+      TaskRepositoryHiveImp(),
+      tag: 'Hive',
+    );
+    Get.put<TaskUseCase>(
+      TaskUseCaseImp(
+          taskRepository: Get.find(tag: (userService.userModel.database)),
+          userService: Get.find()),
+    );
+    Get.lazyPut<HomeController>(
+      () => HomeController(
+        taskService: Get.find(),
+        userService: Get.find(),
+      ),
+    );
+  }
+}
+```
+### Modo de resolver 02
+Usando tags no controller.
 
 
 # Databases

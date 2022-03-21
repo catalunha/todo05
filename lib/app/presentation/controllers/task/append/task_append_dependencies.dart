@@ -18,7 +18,7 @@ class TaskAppendDependencies implements Bindings {
       );
     } else {
       Get.put<TaskRepository>(
-        TaskRepositoryImp(),
+        TaskRepositoryHiveImp(),
       );
     }
     Get.put<TaskUseCase>(

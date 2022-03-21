@@ -12,6 +12,35 @@ class HomeDependencies implements Bindings {
   void dependencies() {
     var userService = Get.find<UserService>();
     print('+++ HomeDependencies: ${userService.userModel.database}');
+    Get.put<TaskRepository>(
+      TaskRepositoryFirebaseImp(firebaseFirestore: Get.find()),
+      tag: 'Firebase',
+    );
+    Get.put<TaskRepository>(
+      TaskRepositoryHiveImp(),
+      tag: 'Hive',
+    );
+    Get.put<TaskUseCase>(
+      TaskUseCaseImp(
+          taskRepository: Get.find(tag: (userService.userModel.database)),
+          userService: Get.find()),
+    );
+    Get.lazyPut<HomeController>(
+      () => HomeController(
+        taskService: Get.find(),
+        userService: Get.find(),
+      ),
+    );
+  }
+}
+
+
+/*
+class HomeDependencies implements Bindings {
+  @override
+  void dependencies() {
+    var userService = Get.find<UserService>();
+    print('+++ HomeDependencies: ${userService.userModel.database}');
     if (userService.userModel.database == 'firebase') {
       Get.put<TaskRepository>(
         TaskRepositoryFirebaseImp(firebaseFirestore: Get.find()),
@@ -32,3 +61,5 @@ class HomeDependencies implements Bindings {
     );
   }
 }
+
+*/

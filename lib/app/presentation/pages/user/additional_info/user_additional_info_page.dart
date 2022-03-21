@@ -11,15 +11,15 @@ class UserAdditionalInfoPage extends StatefulWidget {
 }
 
 class _UserAdditionalInfoPageState extends State<UserAdditionalInfoPage> {
-  final _databases = ['Hive', 'Firebase'];
-  final _databases2 = [
+  final _databases = [
     ['Hive', 'Local (com Hive)'],
     ['Isar', 'Local (com Isar)'],
     ['Firebase', 'Núvem (com Firebase)'],
     ['CouchBase', 'Núvem (com couchBase)'],
   ];
-  String _databaseSelected = 'Hive';
+  // String _databaseSelected = 'Hive';
   final doingValueNotifier = ValueNotifier<bool>(false);
+  final _databaseSelectedValueNotifier = ValueNotifier<String>('Hive');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +66,7 @@ class _UserAdditionalInfoPageState extends State<UserAdditionalInfoPage> {
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.black, width: 2)),
                     child: DropdownButton<String>(
-                      items: _databases2.map((List<String> item) {
+                      items: _databases.map((List<String> item) {
                         if (item[0] == 'Isar' || item[0] == 'CouchBase') {
                           return DropdownMenuItem<String>(
                             value: item[0],
@@ -86,27 +86,33 @@ class _UserAdditionalInfoPageState extends State<UserAdditionalInfoPage> {
                       }).toList(),
                       onChanged: (novoItemSelecionado) {
                         setState(() {
-                          _databaseSelected = novoItemSelecionado!;
+                          _databaseSelectedValueNotifier.value =
+                              novoItemSelecionado!;
                         });
                       },
-                      value: _databaseSelected,
+                      value: _databaseSelectedValueNotifier.value,
                       iconSize: 36,
                       isExpanded: true,
                       elevation: 16,
                     ),
                   ),
                 ),
-                Text('Sua escolha foi: $_databaseSelected'),
-                SizedBox(
-                  height: 50,
+                ValueListenableBuilder(
+                  valueListenable: _databaseSelectedValueNotifier,
+                  builder: (_, String value, __) {
+                    return Text('Sua escolha foi: $value');
+                  },
                 ),
+                SizedBox(height: 50),
                 Center(
                   child: ElevatedButton(
                     child: const Text('Confirmar'),
                     onPressed: () {
                       print('setAdditionalInformation...');
                       widget._userController.setAdditionalInformation(
-                          doing: doingValueNotifier.value);
+                        doing: doingValueNotifier.value,
+                        database: _databaseSelectedValueNotifier.value,
+                      );
                     },
                   ),
                 ),
