@@ -4,11 +4,11 @@ import 'package:todo05/app/data/repositories/factories/task_repository_factory.d
 import 'package:todo05/app/data/repositories/task_repository.dart';
 import 'package:todo05/app/domain/services/user_service.dart';
 
-class TaskRepositoryFactoryFirebase implements TaskRepositoryFactory {
+class TaskRepositoryFactoryFirebaseImpl implements TaskRepositoryFactory {
   final UserService _userService;
   final FirebaseFirestore _firebaseFirestore;
 
-  TaskRepositoryFactoryFirebase({
+  TaskRepositoryFactoryFirebaseImpl({
     required UserService userService,
     required FirebaseFirestore firebaseFirestore,
   })  : _userService = userService,

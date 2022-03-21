@@ -3,10 +3,10 @@ import 'package:todo05/app/data/repositories/factories/task_repository_factory.d
 import 'package:todo05/app/data/repositories/task_repository.dart';
 import 'package:todo05/app/domain/services/user_service.dart';
 
-class TaskRepositoryFactoryHive implements TaskRepositoryFactory {
+class TaskRepositoryFactoryHiveImpl implements TaskRepositoryFactory {
   UserService _userService;
 
-  TaskRepositoryFactoryHive({
+  TaskRepositoryFactoryHiveImpl({
     required UserService userService,
   }) : _userService = userService;
 

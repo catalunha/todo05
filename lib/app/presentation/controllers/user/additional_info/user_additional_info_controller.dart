@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:todo05/app/data/datasources/datasources.dart';
-import 'package:todo05/app/data/datasources/firebase/task/task_repository_factory_firebase.dart';
+import 'package:todo05/app/data/datasources/firebase/task/task_repository_factory_firebase_impl.dart';
 import 'package:todo05/app/data/datasources/firebase/user/user_repository_exception.dart';
-import 'package:todo05/app/data/datasources/hive/task/task_repository_factory_hive.dart';
+import 'package:todo05/app/data/datasources/hive/task/task_repository_factory_hive_impl.dart';
 import 'package:todo05/app/data/repositories/factories/task_repository_factory.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
 import 'package:todo05/app/domain/usecases/user/user_usecase.dart';
@@ -116,7 +116,7 @@ class UserAdditionalInfoController extends GetxController
         //   permanent: true,
         // );
         Get.lazyPut<TaskRepositoryFactory>(
-          () => TaskRepositoryFactoryFirebase(
+          () => TaskRepositoryFactoryFirebaseImpl(
               userService: Get.find(), firebaseFirestore: Get.find()),
           fenix: true,
         );
@@ -126,7 +126,7 @@ class UserAdditionalInfoController extends GetxController
         //   permanent: true,
         // );
         Get.lazyPut<TaskRepositoryFactory>(
-          () => TaskRepositoryFactoryHive(userService: Get.find()),
+          () => TaskRepositoryFactoryHiveImpl(userService: Get.find()),
           fenix: true,
         );
       }
