@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo05/app/data/datasources/datasources.dart';
 import 'package:todo05/app/presentation/controllers/user/additional_info/user_additional_info_controller.dart';
 
 class UserAdditionalInfoPage extends StatefulWidget {
@@ -11,15 +12,9 @@ class UserAdditionalInfoPage extends StatefulWidget {
 }
 
 class _UserAdditionalInfoPageState extends State<UserAdditionalInfoPage> {
-  final _databases = [
-    ['Hive', 'Local (com Hive)'],
-    ['Isar', 'Local (com Isar)'],
-    ['Firebase', 'Núvem (com Firebase)'],
-    ['CouchBase', 'Núvem (com couchBase)'],
-  ];
-  // String _databaseSelected = 'Hive';
   final doingValueNotifier = ValueNotifier<bool>(false);
-  final _databaseSelectedValueNotifier = ValueNotifier<String>('Hive');
+  final _databaseSelectedValueNotifier =
+      ValueNotifier<DatasourcesEnum>(DatasourcesEnum.hive);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,22 +60,23 @@ class _UserAdditionalInfoPageState extends State<UserAdditionalInfoPage> {
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12),
                         border: Border.all(color: Colors.black, width: 2)),
-                    child: DropdownButton<String>(
-                      items: _databases.map((List<String> item) {
-                        if (item[0] == 'Isar' || item[0] == 'CouchBase') {
-                          return DropdownMenuItem<String>(
-                            value: item[0],
+                    child: DropdownButton<DatasourcesEnum>(
+                      items: DatasourcesEnum.values.map((item) {
+                        if (item == DatasourcesEnum.hive ||
+                            item == DatasourcesEnum.firebase) {
+                          return DropdownMenuItem<DatasourcesEnum>(
+                            value: item,
+                            child: Text(item.description),
+                            enabled: true,
+                          );
+                        } else {
+                          return DropdownMenuItem<DatasourcesEnum>(
+                            value: item,
                             child: Text(
-                              item[1],
+                              item.description,
                               style: TextStyle(color: Colors.grey),
                             ),
                             enabled: false,
-                          );
-                        } else {
-                          return DropdownMenuItem<String>(
-                            value: item[0],
-                            child: Text(item[1]),
-                            enabled: true,
                           );
                         }
                       }).toList(),
@@ -99,8 +95,8 @@ class _UserAdditionalInfoPageState extends State<UserAdditionalInfoPage> {
                 ),
                 ValueListenableBuilder(
                   valueListenable: _databaseSelectedValueNotifier,
-                  builder: (_, String value, __) {
-                    return Text('Sua escolha foi: $value');
+                  builder: (_, DatasourcesEnum value, __) {
+                    return Text('Sua escolha foi: ${value.description}');
                   },
                 ),
                 SizedBox(height: 50),

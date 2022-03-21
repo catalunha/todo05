@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:todo05/app/data/datasources/firebase/task/task_repository_firebase_impl.dart';
 import 'package:todo05/app/data/datasources/hive/task/task_repository_hive_impl.dart';
+import 'package:todo05/app/data/repositories/factories/task_repository_factory.dart';
 import 'package:todo05/app/data/repositories/task_repository.dart';
 import 'package:todo05/app/domain/models/task/task_model.dart';
 import 'package:todo05/app/domain/services/databases_service.dart';
@@ -8,25 +9,19 @@ import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
 import 'package:todo05/app/domain/services/user_service.dart';
 
 class TaskUseCaseImp implements TaskUseCase {
-  DataBasesService _dataBasesService;
+  TaskRepositoryFactory _taskRepositoryFactory;
   UserService _userService;
 
   TaskUseCaseImp({
-    required DataBasesService dataBasesService,
+    required TaskRepositoryFactory taskRepositoryFactory,
     required UserService userService,
-  })  : _dataBasesService = dataBasesService,
+  })  : _taskRepositoryFactory = taskRepositoryFactory,
         _userService = userService {
     dataBaseConfig();
   }
   var _database;
   void dataBaseConfig() {
-    var userService = Get.find<UserService>();
-    var map = {
-      'dataBaseType': userService.userModel.database,
-      'userUuid': userService.userModel.uuid,
-    };
-    _dataBasesService.dataBaseConfig(map);
-    _database = _dataBasesService.dataBaseInstance();
+    _database = _taskRepositoryFactory.produce();
   }
 
   @override
