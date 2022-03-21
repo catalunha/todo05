@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
-import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/domain/services/user_service.dart';
 import 'package:todo05/app/domain/usecases/user/user_usecase.dart';
 import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
 

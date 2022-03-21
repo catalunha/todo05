@@ -4,7 +4,7 @@ import 'package:todo05/app/data/datasources/firebase/user/user_repository_except
 import 'package:todo05/app/domain/models/user/user_model.dart';
 import 'package:todo05/app/domain/usecases/user/user_usecase.dart';
 import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
-import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/domain/services/user_service.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
 import 'package:todo05/app/presentation/routes.dart';

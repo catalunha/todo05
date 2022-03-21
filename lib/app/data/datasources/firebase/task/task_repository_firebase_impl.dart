@@ -5,22 +5,37 @@ import 'package:todo05/app/domain/models/task/task_model.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
 
 class TaskRepositoryFirebaseImp implements TaskRepository {
-  final FirebaseFirestore _firebaseFirestore;
+  // final FirebaseFirestore _firebaseFirestore;
+  // final String _userUuid;
 
-  TaskRepositoryFirebaseImp({required FirebaseFirestore firebaseFirestore})
-      : _firebaseFirestore = firebaseFirestore;
+  // TaskRepositoryFirebaseImp(
+  //     {required FirebaseFirestore firebaseFirestore, required String userUuid})
+  //     : _firebaseFirestore = firebaseFirestore,
+  //       _userUuid = userUuid;
 
-  String _userUuid = 'task';
-  @override
-  void setUserUuid(String uuid) {
+  static TaskRepositoryFirebaseImp? _instance;
+
+  TaskRepositoryFirebaseImp._();
+  static TaskRepositoryFirebaseImp get instance {
+    _instance ??= TaskRepositoryFirebaseImp._();
+    return _instance!;
+  }
+
+  String _userUuid = '';
+  set userUuid(String uuid) {
     _userUuid = uuid;
+  }
+
+  FirebaseFirestore? _firebaseFirestore;
+  set firebaseFirestore(FirebaseFirestore firebaseFirestore) {
+    _firebaseFirestore = firebaseFirestore;
   }
 
   @override
   Future<void> create(TaskModel taskModel) async {
     print('create firebase');
     try {
-      CollectionReference docRef = _firebaseFirestore
+      CollectionReference docRef = _firebaseFirestore!
           .collection(UserModel.collection)
           .doc(_userUuid)
           .collection(TaskModel.collection);
@@ -43,7 +58,7 @@ class TaskRepositoryFirebaseImp implements TaskRepository {
 
   @override
   Future<void> deleteByUuid(String uuid) async {
-    await _firebaseFirestore
+    await _firebaseFirestore!
         .collection(UserModel.collection)
         .doc(_userUuid)
         .collection(TaskModel.collection)
@@ -53,11 +68,12 @@ class TaskRepositoryFirebaseImp implements TaskRepository {
 
   @override
   Future<List<TaskModel>> readAll() async {
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firebaseFirestore
-        .collection(UserModel.collection)
-        .doc(_userUuid)
-        .collection(TaskModel.collection)
-        .get();
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await _firebaseFirestore!
+            .collection(UserModel.collection)
+            .doc(_userUuid)
+            .collection(TaskModel.collection)
+            .get();
     List<TaskModel> listModel = <TaskModel>[];
     listModel = querySnapshot.docs
         .map(
@@ -79,13 +95,14 @@ class TaskRepositoryFirebaseImp implements TaskRepository {
     } else {
       endFilter = DateTime(end.year, end.month, end.day, 23, 59, 59);
     }
-    QuerySnapshot<Map<String, dynamic>> querySnapshot = await _firebaseFirestore
-        .collection(UserModel.collection)
-        .doc(_userUuid)
-        .collection(TaskModel.collection)
-        .where('date', isGreaterThanOrEqualTo: startFilter)
-        .where('date', isLessThanOrEqualTo: endFilter)
-        .get();
+    QuerySnapshot<Map<String, dynamic>> querySnapshot =
+        await _firebaseFirestore!
+            .collection(UserModel.collection)
+            .doc(_userUuid)
+            .collection(TaskModel.collection)
+            .where('date', isGreaterThanOrEqualTo: startFilter)
+            .where('date', isLessThanOrEqualTo: endFilter)
+            .get();
     List<TaskModel> listModel = <TaskModel>[];
     listModel = querySnapshot.docs
         .map(
@@ -99,7 +116,7 @@ class TaskRepositoryFirebaseImp implements TaskRepository {
 
   @override
   Future<TaskModel?> readByUuid(String uuid) async {
-    DocumentSnapshot<Map<String, dynamic>> doc = await _firebaseFirestore
+    DocumentSnapshot<Map<String, dynamic>> doc = await _firebaseFirestore!
         .collection(UserModel.collection)
         .doc(_userUuid)
         .collection(TaskModel.collection)
@@ -112,7 +129,7 @@ class TaskRepositoryFirebaseImp implements TaskRepository {
   @override
   Future<void> update(TaskModel taskModel) async {
     try {
-      CollectionReference docRef = _firebaseFirestore
+      CollectionReference docRef = _firebaseFirestore!
           .collection(UserModel.collection)
           .doc(_userUuid)
           .collection(TaskModel.collection);

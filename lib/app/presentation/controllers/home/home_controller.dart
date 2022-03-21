@@ -6,7 +6,7 @@ import 'package:todo05/app/domain/models/task/task_model.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
 import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
 import 'package:todo05/app/domain/usecases/task/task_usecase_exception.dart';
-import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/domain/services/user_service.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
 import 'package:todo05/app/presentation/routes.dart';

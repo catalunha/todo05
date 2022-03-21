@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/domain/services/user_service.dart';
 import 'package:todo05/app/presentation/controllers/home/home_controller.dart';
 import 'package:todo05/app/presentation/pages/home/part/pop_menu_photouser.dart';
 import 'package:todo05/app/presentation/pages/home/part/task/group/tasks_by_day_list.dart';

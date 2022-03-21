@@ -91,7 +91,7 @@ class TaskRepositoryImpl implements TaskRepositoryAbstract {
 
 ## ToDo-Versão 5 com 2 Databases
 
-### Modo de resolver 01
+### Problema dos databases
 1) Estrutura completa do projeto
 ```Dart
 lib/app
@@ -294,8 +294,33 @@ Future<bool> imprimirTef(String payloadTef) async {
 ```
 
 
-### Modo de resolver 02
-Usando tags no controller.
+### Modo de resolver 01 - if (meu) [:-(((]
+If nas dependencias.
+```Dart
+class TaskAppendBindings implements Bindings {
+  @override
+  void dependencies() {
+    var userService = Get.find<UserService>();
+    print('+++ Qual database do usuario: ${userService.userModel.database}');
+    if (userService.userModel.database == 'firebase') {
+      Get.put<TaskRepository>(
+        TaskRepositoryFirebaseImp(firebaseFirestore: Get.find()),
+      );
+    } else {
+      Get.put<TaskRepository>(
+        TaskRepositoryHiveImp(),
+      );
+    }
+    Get.put<TaskUseCase>(
+      TaskUseCaseImp(taskRepository: Get.find(), userService: Get.find()),
+    );
+    Get.lazyPut<TaskAppendController>(
+        () => TaskAppendController(taskUseCase: Get.find()));
+  }
+}
+```
+### Modo de resolver 02 - tag [:-;]
+Usando tags nas dependencias.
 
 ```Dart
 class HomeDependencies implements Bindings {
@@ -325,8 +350,90 @@ class HomeDependencies implements Bindings {
   }
 }
 ```
-### Modo de resolver 02
-Usando tags no controller.
+### Modo de resolver 03 - (Brasizza) [:-))))]
+Usando modo brasizza.
+Simplesmente um modo lindo - CleanCode.
+
+```Dart
+class DataBasesService extends GetxService {
+  TaskRepositoryHiveImp get hive => TaskRepositoryHiveImp.instance;
+  TaskRepositoryFirebaseImp get firebase => TaskRepositoryFirebaseImp.instance;
+
+  var _dataBaseInstance;
+  T dataBaseInstance<T>() {
+    return _dataBaseInstance as T;
+  }
+
+  T dataBaseConfig<T>(Map<String, dynamic> database) {
+    if (database['dataBaseType'] == 'Firebase') {
+      firebase.userUuid = database['userUuid'];
+      firebase.firebaseFirestore = Get.find();
+
+      _dataBaseInstance = firebase as T;
+      return firebase as T;
+    } else {
+      hive.userUuid = database['userUuid'];
+
+      _dataBaseInstance = hive as T;
+      return hive as T;
+    }
+  }
+}
+```
+
+```Dart
+class HomeDependencies implements Bindings {
+  @override
+  void dependencies() {
+    Get.put<DataBasesService>(
+      DataBasesService(),
+    );
+    Get.put<TaskUseCase>(
+      TaskUseCaseImp(dataBasesService: Get.find(), userService: Get.find()),
+    );
+    Get.lazyPut<HomeController>(
+      () => HomeController(
+        taskService: Get.find(),
+        userService: Get.find(),
+      ),
+    );
+  }
+}
+```
+
+```Dart
+class TaskUseCaseImp implements TaskUseCase {
+  DataBasesService _dataBasesService;
+  UserService _userService;
+
+  TaskUseCaseImp({
+    required DataBasesService dataBasesService,
+    required UserService userService,
+  })  : _dataBasesService = dataBasesService,
+        _userService = userService {
+    dataBaseConfig();
+  }
+  var _database;
+  void dataBaseConfig() {
+    var userService = Get.find<UserService>();
+    var map = {
+      'dataBaseType': userService.userModel.database,
+      'userUuid': userService.userModel.uuid,
+    };
+    _dataBasesService.dataBaseConfig(map);
+    _database = _dataBasesService.dataBaseInstance();
+  }
+
+  @override
+  Future<void> create(TaskModel taskModel) {
+    return _database.create(taskModel);
+  }
+}
+```
+
+## Contribuição do rodrigo
+https://refactoring.guru/pt-br/design-patterns/abstract-factory
+
 
 
 # Databases

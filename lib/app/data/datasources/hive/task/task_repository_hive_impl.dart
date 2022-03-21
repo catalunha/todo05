@@ -1,13 +1,20 @@
-import 'dart:convert';
-
 import 'package:hive/hive.dart';
 import 'package:todo05/app/data/repositories/task_repository.dart';
 import 'package:todo05/app/domain/models/task/task_model.dart';
 
 class TaskRepositoryHiveImp implements TaskRepository {
-  TaskRepositoryHiveImp();
+  static TaskRepositoryHiveImp? _instance;
 
-  String _userUuid = 'task';
+  TaskRepositoryHiveImp._();
+  static TaskRepositoryHiveImp get instance {
+    _instance ??= TaskRepositoryHiveImp._();
+    return _instance!;
+  }
+
+  String _userUuid = '';
+  set userUuid(String uuid) {
+    _userUuid = uuid;
+  }
 
   @override
   Future<void> create(TaskModel taskModel) async {
@@ -82,10 +89,5 @@ class TaskRepositoryHiveImp implements TaskRepository {
     var box = await Hive.openBox(_userUuid);
     await box.delete(uuid);
     await box.close();
-  }
-
-  @override
-  void setUserUuid(String uuid) {
-    _userUuid = uuid;
   }
 }
