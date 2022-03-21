@@ -17,12 +17,9 @@ class TaskUseCaseImp implements TaskUseCase {
     required UserService userService,
   })  : _taskRepositoryFactory = taskRepositoryFactory,
         _userService = userService {
-    dataBaseConfig();
-  }
-  var _database;
-  void dataBaseConfig() {
     _database = _taskRepositoryFactory.produce();
   }
+  var _database;
 
   @override
   Future<void> create(TaskModel taskModel) {
