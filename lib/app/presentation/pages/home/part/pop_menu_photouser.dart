@@ -20,23 +20,26 @@ class PopMenuButtonPhotoUser extends StatelessWidget {
         message: 'Click para opções',
         child: Obx(
           () => ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: _homeController.userModel.photoUrl != null
-                  ? Image.network(
-                      '${_homeController.userModel.photoUrl}',
-                      // loadingBuilder: (_, __, ___) {
-                      //   return Center(child: const CircularProgressIndicator());
-                      // },
-                      height: 58,
-                      width: 58,
-                      errorBuilder: (_, __, ___) {
-                        return const Icon(
-                          Icons.person,
-                          color: Colors.black,
-                        );
-                      },
-                    )
-                  : const Icon(Icons.person, color: Colors.black)),
+            borderRadius: BorderRadius.circular(8.0),
+            child:
+                // _homeController.userModel.photoUrl != null
+                //     ?
+                Image.network(
+              _homeController.userModel?.photoUrl ?? '',
+              // loadingBuilder: (_, __, ___) {
+              //   return Center(child: const CircularProgressIndicator());
+              // },
+              height: 58,
+              width: 58,
+              errorBuilder: (_, __, ___) {
+                return const Icon(
+                  Icons.person,
+                  color: Colors.black,
+                );
+              },
+            ),
+          ),
+          // : const Icon(Icons.person, color: Colors.red)),
         ),
       ),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),

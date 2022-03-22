@@ -123,8 +123,8 @@ class _AuthEmailPasswordPageState extends State<AuthEmailPasswordPage> {
                           _formKey.currentState?.validate() ?? false;
                       if (formValid) {
                         widget._emailPasswordController.registerUser(
-                          email: _emailTec.text,
-                          password: _passwordTec.text,
+                          email: _emailTec.text.trim(),
+                          password: _passwordTec.text.trim(),
                         );
                       }
                     },

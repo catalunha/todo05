@@ -20,7 +20,8 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
   })  : _taskUserCase = taskService,
         _userService = userService;
 
-  UserModel get userModel => _userService.userModel;
+  final _userModel = Rxn<UserModel>();
+  UserModel? get userModel => _userModel.value;
 
   final _loading = false.obs;
   final _message = Rxn<MessageModel>();
@@ -35,6 +36,7 @@ class HomeController extends GetxController with LoaderMixin, MessageMixin {
   @override
   void onInit() async {
     super.onInit();
+    _userModel(_userService.userModel);
     loaderListener(_loading);
     messageListener(_message);
     await rescheduleTask();

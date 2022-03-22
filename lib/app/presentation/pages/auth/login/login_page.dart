@@ -50,9 +50,10 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                   children: [
                     SizedBox(height: 10),
                     AppLogo(),
-                    Text('ToDo', style: context.textTheme.headline6),
+                    Text('ToDo - Versão 05',
+                        style: context.textTheme.headline6),
                     const Text(
-                      '(com ~CleanCode/~MVVM, GetX, Hive, Isar?, Firebase Auth/Firestore)',
+                      '(~CleanCode/~MVVM, GetX, Hive, Firebase Auth, Firebase Firestore)',
                       textAlign: TextAlign.center,
                     ),
                     // Text('Todo List', style: Theme.of(context).textTheme.headline6),
@@ -104,7 +105,7 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                             onPressed: () {
                               if (_emailTec.text.isNotEmpty) {
                                 widget._loginController
-                                    .forgotPassword(_emailTec.text);
+                                    .forgotPassword(_emailTec.text.trim());
                               } else {
                                 _emailFocus.requestFocus();
                                 Get.snackbar(
@@ -122,7 +123,9 @@ class _AuthLoginPageState extends State<AuthLoginPage> {
                                   _formKey.currentState?.validate() ?? false;
                               if (formValid) {
                                 widget._loginController.loginEmail(
-                                    _emailTec.text, _passwordTec.text);
+                                  _emailTec.text.trim(),
+                                  _passwordTec.text.trim(),
+                                );
                               }
                             },
                             child: const Text('Login'),

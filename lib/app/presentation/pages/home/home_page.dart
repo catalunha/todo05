@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Obx(() => Text(
               // 'Olá, ${widget._homeController.userService.userModel.displayName ?? "Sem nome"}',
-              'Olá, ${widget._homeController.userModel.displayName ?? "Sem nome"}',
+              'Olá, ${widget._homeController.userModel?.displayName ?? "Sem nome"}',
               // 'Oi, ${widget._userService.userModel.uuid}',
 
               style: TextStyle(color: Colors.black),

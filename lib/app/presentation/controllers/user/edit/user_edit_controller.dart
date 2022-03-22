@@ -29,12 +29,8 @@ class UserEditController extends GetxController {
     var userModelUpdate = userModel!.copyWith(
         displayName: displayName, photoUrl: photoUrl, database: database);
     await _userUseCase.update(userModelUpdate);
-    var controller = Get.find<UserService>();
-    var databaseLast = controller.userModel.database;
-    controller.userModel = userModelUpdate;
-    if (databaseLast != database) {
-      AuthController _authController = Get.find();
-      _authController.logout();
-    }
+
+    AuthController _authController = Get.find();
+    _authController.logout();
   }
 }

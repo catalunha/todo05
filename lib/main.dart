@@ -9,8 +9,9 @@ import 'package:todo05/firebase_options.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+      // name: 'DEFAULT',
+      // options: DefaultFirebaseOptions.currentPlatform,
+      );
   await Hive.initFlutter();
   // await Hive.deleteFromDisk();
   runApp(MyApp());
