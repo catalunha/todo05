@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
-import 'package:todo05/app/data/datasources/hive/task/task_repository_impl.dart';
-import 'package:todo05/app/data/repositories/task_repository.dart';
+import 'package:todo05/app/data/datasources/firebase/task/task_repository_factory_firebase_impl.dart';
+import 'package:todo05/app/data/datasources/hive/task/task_repository_factory_hive_impl.dart';
+import 'package:todo05/app/data/repositories/factories/task_repository_factory.dart';
+import 'package:todo05/app/domain/services/databases_service.dart';
 import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
 import 'package:todo05/app/domain/usecases/task/task_usecase_impl.dart';
 import 'package:todo05/app/presentation/controllers/task/append/task_append_controller.dart';
@@ -8,11 +10,9 @@ import 'package:todo05/app/presentation/controllers/task/append/task_append_cont
 class TaskAppendDependencies implements Bindings {
   @override
   void dependencies() {
-    Get.put<TaskRepository>(
-      TaskRepositoryImp(),
-    );
     Get.put<TaskUseCase>(
-      TaskUseCaseImp(taskRepository: Get.find(), userModelService: Get.find()),
+      TaskUseCaseImp(
+          taskRepositoryFactory: Get.find(), userService: Get.find()),
     );
     Get.lazyPut<TaskAppendController>(
         () => TaskAppendController(taskUseCase: Get.find()));

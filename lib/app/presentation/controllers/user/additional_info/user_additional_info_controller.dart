@@ -1,13 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:todo05/app/data/datasources/datasources.dart';
+import 'package:todo05/app/data/datasources/firebase/task/task_repository_factory_firebase_impl.dart';
 import 'package:todo05/app/data/datasources/firebase/user/user_repository_exception.dart';
+import 'package:todo05/app/data/datasources/hive/task/task_repository_factory_hive_impl.dart';
+import 'package:todo05/app/data/repositories/factories/task_repository_factory.dart';
 import 'package:todo05/app/domain/models/user/user_model.dart';
 import 'package:todo05/app/domain/usecases/user/user_usecase.dart';
 import 'package:todo05/app/presentation/controllers/auth/auth_controller.dart';
-import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/domain/services/user_service.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/loader_mixin.dart';
 import 'package:todo05/app/presentation/controllers/utils/mixins/message_mixin.dart';
-import 'package:todo05/app/routes.dart';
+import 'package:todo05/app/presentation/routes.dart';
 
 class UserAdditionalInfoController extends GetxController
     with LoaderMixin, MessageMixin {
@@ -83,12 +87,14 @@ class UserAdditionalInfoController extends GetxController
 
   void setAdditionalInformation({
     required bool doing,
+    required DatasourcesEnum database,
   }) async {
     getAdditionalInformation(false);
 
     Map<String, dynamic> data = {};
     //Dados coletados na page
     data['doing'] = doing;
+    data['database'] = database.name;
     print(data);
     await userCreate(data: data);
     goToHomeOrAnalisyng();
@@ -99,9 +105,32 @@ class UserAdditionalInfoController extends GetxController
       print('indo para userAnalyzingInfo');
       Get.offAllNamed(Routes.userAnalyzingInfo);
     } else {
+      print('indo para home');
       var controller = Get.find<UserService>();
       controller.userModel = UserModel.fromMap(_userModel!.toMap());
-      print('indo para home');
+      if (controller.userModel.database == DatasourcesEnum.firebase) {
+        print('firebase criado...');
+        // Get.put<TaskRepositoryFactory>(
+        //   TaskRepositoryFactoryFirebase(
+        //       userService: Get.find(), firebaseFirestore: Get.find()),
+        //   permanent: true,
+        // );
+        Get.lazyPut<TaskRepositoryFactory>(
+          () => TaskRepositoryFactoryFirebaseImpl(
+              userService: Get.find(), firebaseFirestore: Get.find()),
+          fenix: true,
+        );
+      } else {
+        // Get.put<TaskRepositoryFactory>(
+        //   TaskRepositoryFactoryHive(userService: Get.find()),
+        //   permanent: true,
+        // );
+        Get.lazyPut<TaskRepositoryFactory>(
+          () => TaskRepositoryFactoryHiveImpl(userService: Get.find()),
+          fenix: true,
+        );
+      }
+
       Get.offAllNamed(Routes.home);
     }
   }
@@ -110,7 +139,7 @@ class UserAdditionalInfoController extends GetxController
     Map<String, dynamic> data = {};
     //Dados basicos do userModel - internos
     data['createdAt'] = DateTime.now();
-    data['inAnalysis'] = true;
+    data['inAnalysis'] = false;
     return data;
   }
 

@@ -49,6 +49,7 @@ class UserRepositoryImpl implements UserRepository {
           _firebaseFirestore.collection(UserModel.collection);
       String idNew = docRef.doc().id;
       print('create.map1 $data');
+      print('create.map1 $data');
       var userModel = UserModel.fromMap(data).copyWith(uuid: idNew);
       print('create.map2 ${userModel.toMap()}');
 

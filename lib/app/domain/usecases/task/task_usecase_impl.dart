@@ -1,65 +1,59 @@
-import 'package:todo05/app/data/datasources/hive/task/task_repository_impl.dart';
+import 'package:get/get.dart';
+import 'package:todo05/app/data/datasources/firebase/task/task_repository_firebase_impl.dart';
+import 'package:todo05/app/data/datasources/hive/task/task_repository_hive_impl.dart';
+import 'package:todo05/app/data/repositories/factories/task_repository_factory.dart';
 import 'package:todo05/app/data/repositories/task_repository.dart';
 import 'package:todo05/app/domain/models/task/task_model.dart';
+import 'package:todo05/app/domain/services/databases_service.dart';
 import 'package:todo05/app/domain/usecases/task/task_usecase.dart';
-import 'package:todo05/app/domain/usecases/user/user_service.dart';
+import 'package:todo05/app/domain/services/user_service.dart';
 
 class TaskUseCaseImp implements TaskUseCase {
-  TaskRepository _taskRepository;
-  UserService _userModelService;
+  TaskRepositoryFactory _taskRepositoryFactory;
+  UserService _userService;
 
   TaskUseCaseImp({
-    required TaskRepository taskRepository,
-    required UserService userModelService,
-  })  : _taskRepository = taskRepository,
-        _userModelService = userModelService;
+    required TaskRepositoryFactory taskRepositoryFactory,
+    required UserService userService,
+  })  : _taskRepositoryFactory = taskRepositoryFactory,
+        _userService = userService {
+    _database = _taskRepositoryFactory.produce();
+  }
+  var _database;
 
   @override
   Future<void> create(TaskModel taskModel) {
-    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
-    return _taskRepository.create(taskModel);
+    return _database.create(taskModel);
   }
 
   @override
   Future<List<TaskModel>> readAll() {
-    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
-
-    return _taskRepository.readAll();
+    return _database.readAll();
   }
 
   @override
   Future<TaskModel?> readByUuid(String uuid) {
-    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
-
-    return _taskRepository.readByUuid(uuid);
+    return _database.readByUuid(uuid);
   }
 
   @override
   Future<List<TaskModel>> readByPeriod(
       {required DateTime start, DateTime? end}) {
-    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
-
-    return _taskRepository.readByPeriod(start: start, end: end);
+    return _database.readByPeriod(start: start, end: end);
   }
 
   @override
   Future<void> update(TaskModel taskModel) {
-    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
-
-    return _taskRepository.update(taskModel);
+    return _database.update(taskModel);
   }
 
   @override
   Future<void> deleteAll() {
-    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
-
-    return _taskRepository.deleteAll();
+    return _database.deleteAll();
   }
 
   @override
   Future<void> deleteByUuid(String uuid) {
-    TaskRepositoryImp.boxName = _userModelService.userModel.uuid;
-
-    return _taskRepository.deleteByUuid(uuid);
+    return _database.deleteByUuid(uuid);
   }
 }

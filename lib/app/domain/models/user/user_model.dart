@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:todo05/app/data/datasources/datasources.dart';
+
 class UserModel {
   static const String collection = 'user';
 
@@ -9,7 +11,7 @@ class UserModel {
   String? displayName;
   String? photoUrl;
   final bool doing;
-  final String database;
+  final DatasourcesEnum database;
   final DateTime createdAt;
   final bool inAnalysis;
   UserModel({
@@ -31,7 +33,7 @@ class UserModel {
     String? displayName,
     String? photoUrl,
     bool? doing,
-    String? database,
+    DatasourcesEnum? database,
     DateTime? createdAt,
     bool? inAnalysis,
   }) {
@@ -56,7 +58,7 @@ class UserModel {
       'displayName': displayName,
       'photoUrl': photoUrl,
       'doing': doing,
-      'database': database,
+      'database': database.name,
       'createdAt': createdAt,
       'inAnalysis': inAnalysis,
     };
@@ -69,8 +71,8 @@ class UserModel {
       email: map['email'] ?? '',
       displayName: map['displayName'],
       photoUrl: map['photoUrl'],
-      database: map['database'],
       doing: map['doing'] ?? false,
+      database: DatasourcesEnum.values.byName(map['database']),
       createdAt: DateTime.fromMillisecondsSinceEpoch(
           map['createdAt'].millisecondsSinceEpoch),
       inAnalysis: map['inAnalysis'] ?? false,
@@ -93,10 +95,9 @@ class UserModel {
         DateTime.tryParse(map['createdAt'] as String) ?? DateTime.now();
     return UserModel.fromMap(map);
   }
-
   @override
   String toString() {
-    return 'UserModel(uuid: $uuid, uidAuth: $uidAuth, email: $email, displayName: $displayName, photoUrl: $photoUrl, database: $database, doing: $doing, createdAt: $createdAt, inAnalysis: $inAnalysis)';
+    return 'UserModel(uuid: $uuid, uidAuth: $uidAuth, email: $email, displayName: $displayName, photoUrl: $photoUrl, doing: $doing, database: $database, createdAt: $createdAt, inAnalysis: $inAnalysis)';
   }
 
   @override
@@ -109,8 +110,8 @@ class UserModel {
         other.email == email &&
         other.displayName == displayName &&
         other.photoUrl == photoUrl &&
-        other.database == database &&
         other.doing == doing &&
+        other.database == database &&
         other.createdAt == createdAt &&
         other.inAnalysis == inAnalysis;
   }
@@ -122,8 +123,8 @@ class UserModel {
         email.hashCode ^
         displayName.hashCode ^
         photoUrl.hashCode ^
-        database.hashCode ^
         doing.hashCode ^
+        database.hashCode ^
         createdAt.hashCode ^
         inAnalysis.hashCode;
   }
